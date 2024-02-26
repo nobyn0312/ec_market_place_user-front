@@ -40,10 +40,10 @@ const Header = () => {
             </a>
           </h1>
           <div className={styles.cartIcon}>
-            <a href="/cart">
+            <Link href={"/cart"}>
               <img src={cartIcon.src} alt="cart" />
               <p className={styles.cartNum}>{cartQuantity}</p>
-            </a>
+            </Link>
           </div>
         </div>
 
