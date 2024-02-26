@@ -1,0 +1,7 @@
+.checkout {
+  margin-bottom: 24px;
+}
+
+.inputField::placeholder {
+  color: red;
+}

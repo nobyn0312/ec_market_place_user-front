@@ -1,0 +1,12 @@
+/* 履歴用コンテナ */
+.container_hitory {
+  padding: 8px 0 8px 8px;
+}
+.sliderWrap {
+  overflow: hidden;
+}
+.sliderList {
+  overflow-x: scroll;
+  gap: 16px;
+  white-space: nowrap;
+}

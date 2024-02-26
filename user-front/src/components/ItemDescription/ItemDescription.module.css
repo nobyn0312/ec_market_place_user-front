@@ -1,0 +1,45 @@
+.itemCard {
+  position: relative;
+  width: 100%;
+  border-radius: 6px;
+}
+.itemCard a {
+  padding: 8px;
+}
+.itemCard img{
+  border-radius: 6px 0 0 6px;
+}
+
+.itemCardR{
+  width: 50%;
+  padding: 8px;
+}
+.price {
+  color: #b12704;
+  font-weight: bold;
+  font-size: 24px;
+}
+.itemTitle {
+  line-height: 1.75;
+}
+.delivery_status,
+.item_option {
+  font-size: 12px;
+  font-weight: bold;
+}
+.review_star {
+  margin-bottom: 8px;
+}
+.review_star span {
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 4px;
+}
+
+.mB8 {
+  margin-bottom: 8px;
+}
+
+.ItemDescriptionR{
+  width: 48%;
+}

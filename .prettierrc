@@ -1,0 +1,23 @@
+{
+  "printWidth": 120,
+  "trailingComma": "es5",
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "importOrder": [
+    "react",
+    "^react-.*$",
+    "^next",
+    "^next-.*$",
+    "^next/.*$",
+    "^.*/hooks/.*$",
+    "^.*/services/.*$",
+    "^.*/utils/.*$",
+    "^.*/types/.*$",
+    "^.*/pages/.*$",
+    "^.*/components/.*$",
+    "^[./]",
+    ".*"
+  ]
+}

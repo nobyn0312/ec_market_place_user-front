@@ -1,0 +1,2804 @@
+openapi: 3.0.3
+info:
+  title: ECサイトuserAPIリファレンス
+  description: ECサイト上で買い物するユーザー画面のAPIリファレンスです
+  version: 1.0.0
+servers:
+  - url: "http://localhost:9090"
+    description: ローカル環境
+  - url: "http://localhost:4010"
+    description: モックサーバー環境
+  - url: "http://"
+    description: 本番環境
+
+tags:
+  - name: User
+    description: ユーザー
+  - name: ShippingInfo
+    description: 発送情報
+  - name: CreditCard
+    description: クレジットカード
+  - name: Shop
+    description: ショップ
+  - name: Item
+    description: 商品
+  - name: Order
+    description: 注文
+  - name: Review
+    description: レビュー
+
+paths:
+  /user/csrf:
+    get:
+      summary: CSRFトークン取得
+      operationId: getCsrfToken
+      tags:
+        - User
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  csrf_token:
+                    type: string
+                    description: CSRF Token
+                example:
+                  csrf_token: "TOb3KjqXXuDEvKv4W4rxV1LND1R51UAI"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  /user/signup:
+    post:
+      summary: 新規登録
+      operationId: createUserAccount
+      tags:
+        - User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - firstName
+                - firstNameKana
+                - lastName
+                - lastNameKana
+                - gender
+                - birthday
+                - email
+                - password
+              properties:
+                firstName:
+                  type: string
+                  example: 山田
+                firstNameKana:
+                  type: string
+                  example: ヤマダ
+                lastName:
+                  type: string
+                  example: 太郎
+                lastNameKana:
+                  type: string
+                  example: タロウ
+                gender:
+                  type: string
+                  example: male
+                  enum:
+                    - male
+                    - female
+                    - unknown
+                birthday:
+                  type: string
+                  example: "19930912"
+                email:
+                  type: string
+                  example: example@gmail.com
+                password:
+                  type: string
+                  example: test0000
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  /user/login:
+    post:
+      summary: ログイン
+      operationId: UserSignIn
+      tags:
+        - User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  example: example@gmail.com
+                password:
+                  type: string
+                  example: test0000
+      responses:
+        "200":
+          description: success
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  /user/logout:
+    post:
+      summary: ログアウト
+      operationId: signOut
+      tags:
+        - User
+      responses:
+        "200":
+          description: success
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  /user/profile:
+    put:
+      summary: 登録情報変更
+      operationId: changeUserProfile
+      tags:
+        - User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - firstName
+                - firstNameKana
+                - lastName
+                - lastNameKana
+                - gender
+                - birthday
+                - email
+                - password
+              properties:
+                firstName:
+                  type: string
+                  example: 山田
+                firstNameKana:
+                  type: string
+                  example: ヤマダ
+                lastName:
+                  type: string
+                  example: 太郎
+                lastNameKana:
+                  type: string
+                  example: タロウ
+                gender:
+                  type: string
+                  example: male
+                  enum:
+                    - male
+                    - female
+                    - unknown
+                birthday:
+                  type: string
+                  example: "19930912"
+                email:
+                  type: string
+                  example: example@gmail.com
+                password:
+                  type: string
+                  example: test0000
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  /user/account:
+    delete:
+      summary: アカウント削除
+      operationId: deleteUserAccount
+      tags:
+        - User
+      responses:
+        "200":
+          description: success
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  /user/shippingInfo:
+    get:
+      summary: 発送情報全件取得
+      operationId: getUserAllShippingInfo
+      tags:
+        - ShippingInfo
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ShippingInfo"
+                example:
+                  - id: 9918f2af-5721-478c-ae7d-1
+                    postalCode: 1010011
+                    tel: 8011112222
+                    country: 8011112222
+                    prefecture: 東京都
+                    city: 新宿区
+                    address: 中央
+                    building: タワー
+                  - id: 9918f2af-5721-478c-ae7d-1
+                    postalCode: 1010011
+                    tel: 8011112222
+                    country: 8011112222
+                    prefecture: 東京都
+                    city: 新宿区
+                    address: 中央
+                    building: タワー
+                  - id: 9918f2af-5721-478c-ae7d-1
+                    postalCode: 1010011
+                    tel: 8011112222
+                    country: 8011112222
+                    prefecture: 東京都
+                    city: 新宿区
+                    address: 中央
+                    building: タワー
+
+    post:
+      summary: 発送情報登録
+      operationId: registerShippingInfo
+      tags:
+        - ShippingInfo
+      parameters:
+        - name: postalCode
+          in: query
+          required: true
+          description: 郵便番号
+          schema:
+            type: number
+          example: 1010011
+        - name: tel
+          in: query
+          required: true
+          description: 電話番号
+          schema:
+            type: number
+          example: 8011112222
+        - name: country
+          in: query
+          required: true
+          description: 国
+          schema:
+            type: string
+          example: Japan
+        - name: prefecture
+          in: query
+          required: true
+          description: 都道府県
+          schema:
+            type: string
+          example: 東京都
+        - name: city
+          in: query
+          required: true
+          description: 市区町村
+          schema:
+            type: string
+          example: 新宿区
+        - name: address
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 住所
+          example: 中央
+        - name: building
+          in: query
+          required: false
+          schema:
+            type: string
+          description: 建物名
+          example: タワー
+
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ShippingInfo"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  "/user/shippingInfo/{shippingInfoId}":
+    put:
+      summary: 発送情報更新
+      operationId: updateShippingInfo
+      tags:
+        - ShippingInfo
+      parameters:
+        - name: postalCode
+          in: query
+          required: true
+          description: 郵便番号
+          schema:
+            type: number
+          example: 1010011
+        - name: tel
+          in: query
+          required: true
+          description: 電話番号
+          schema:
+            type: number
+          example: 8011112222
+        - name: country
+          in: query
+          required: true
+          description: 国
+          schema:
+            type: string
+          example: Japan
+        - name: prefecture
+          in: query
+          required: true
+          description: 都道府県
+          schema:
+            type: string
+          example: 東京都
+        - name: city
+          in: query
+          required: true
+          description: 市区町村
+          schema:
+            type: string
+          example: 新宿区
+        - name: address
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 住所
+          example: 中央
+        - name: building
+          in: query
+          required: false
+          schema:
+            type: string
+          description: 建物名
+          example: タワー
+
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ShippingInfo"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+    delete:
+      summary: 発送情報削除
+      operationId: deleteShippingInfo
+      tags:
+        - ShippingInfo
+      parameters:
+        - name: shippingInfoId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 9918f2af-5721-478c-ae7d-1
+      responses:
+        "200":
+          description: success
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+    get:
+      summary: 発送情報詳細取得
+      operationId: getUserShippingInfoById
+      tags:
+        - ShippingInfo
+      parameters:
+        - name: shippingInfoId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 9918f2af-5721-478c-ae7d-1
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ShippingInfo"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  /user/creditCard:
+    get:
+      summary: クレジットカード情報全件取得
+      operationId: getUserAllCreditCard
+      tags:
+        - CreditCard
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CreditCard"
+                example:
+                  - id: "a1238829-aa74-45f0-a947-020556b41dc4"
+                    holderName: "ヤマダ タロウ"
+                    number: 1111222233334444
+                    expireDate: 20990223
+                  - id: "a1238829-aa74-45f0-a947-020556b41dc4"
+                    holderName: "ヤマダ タロウ"
+                    number: 1111222233334444
+                    expireDate: 20990909
+                  - id: "a1238829-aa74-45f0-a947-020556b41dc4"
+                    holderName: "ヤマダ タロウ"
+                    number: 1111222233334444
+                    expireDate: 20991020
+
+    post:
+      summary: クレジットカード情報登録
+      operationId: registerCreditCard
+      tags:
+        - CreditCard
+      parameters:
+        - name: holderName
+          in: query
+          required: true
+          description: 所有者名
+          schema:
+            type: string
+          example: ヤマダ タロウ
+        - name: number
+          in: query
+          required: true
+          description: クレジットカード番号
+          schema:
+            type: number
+          example: 1111222233334444
+        - name: expireDate
+          in: query
+          required: true
+          description: 有効期限
+          schema:
+            type: number
+          example: 20990912
+
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreditCard"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  "/user/credit/{creditCardId}":
+    put:
+      summary: クレジットカード情報更新
+      operationId: updateCreditCard
+      tags:
+        - CreditCard
+      parameters:
+        - name: holderName
+          in: query
+          required: true
+          description: 所有者名
+          schema:
+            type: string
+          example: ヤマダ タロウ
+        - name: number
+          in: query
+          required: true
+          description: クレジットカード番号
+          schema:
+            type: number
+          example: 1111222233334444
+        - name: expireDate
+          in: query
+          required: true
+          description: 有効期限
+          schema:
+            type: number
+          example: 20990912
+
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreditCard"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+    delete:
+      summary: クレジットカード情報削除
+      operationId: deleteCreditCard
+      tags:
+        - CreditCard
+      parameters:
+        - name: creditCardId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 9918f2af-5721-478c-ae7d-1
+      responses:
+        "200":
+          description: success
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+    get:
+      summary: クレジットカード情報詳細取得
+      operationId: getUserCreditCardById
+      tags:
+        - CreditCard
+      parameters:
+        - name: creditCardId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 9918f2af-5721-478c-ae7d-1
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreditCard"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  /user/shops:
+    get:
+      summary: ショップ一覧取得
+      operationId: getAllShops
+      tags:
+        - Shop
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Shop"
+                example:
+                  - id: 9918f2af-5721-478c-ae7d-1
+                    name: ここにはショップ名が入ります
+                    image: ここにはショップの画像が入ります
+                    caption: ここにはショップの見出しが入ります
+                    description: ここにはショップの詳細説明が入ります
+                    bookmarkFlg: true
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 9918f2af-5721-478c-ae7d-2
+                    name: ここにはショップ名が入ります
+                    image: ここにはショップの画像が入ります
+                    caption: ここにはショップの見出しが入ります
+                    description: ここにはショップの詳細説明が入ります
+                    bookmarkFlg: false
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 9918f2af-5721-478c-ae7d-3
+                    name: ここにはショップ名が入ります
+                    image: ここにはショップの画像が入ります
+                    caption: ここにはショップの見出しが入ります
+                    description: ここにはショップの詳細説明が入ります
+                    bookmarkFlg: true
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 9918f2af-5721-478c-ae7d-4
+                    name: ここにはショップ名が入ります
+                    image: ここにはショップの画像が入ります
+                    caption: ここにはショップの見出しが入ります
+                    description: ここにはショップの詳細説明が入ります
+                    bookmarkFlg: false
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 9918f2af-5721-478c-ae7d-5
+                    name: ここにはショップ名が入ります
+                    image: ここにはショップの画像が入ります
+                    caption: ここにはショップの見出しが入ります
+                    description: ここにはショップの詳細説明が入ります
+                    bookmarkFlg: true
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 9918f2af-5721-478c-ae7d-6
+                    name: ここにはショップ名が入ります
+                    image: ここにはショップの画像が入ります
+                    caption: ここにはショップの見出しが入ります
+                    description: ここにはショップの詳細説明が入ります
+                    bookmarkFlg: false
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 9918f2af-5721-478c-ae7d-7
+                    name: ここにはショップ名が入ります
+                    image: ここにはショップの画像が入ります
+                    caption: ここにはショップの見出しが入ります
+                    description: ここにはショップの詳細説明が入ります
+                    bookmarkFlg: false
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 9918f2af-5721-478c-ae7d-8
+                    image: ここにはショップの画像が入ります
+                    name: ここにはショップ名が入ります
+                    caption: ここにはショップの見出しが入ります
+                    description: ここにはショップの詳細説明が入ります
+                    bookmarkFlg: false
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  "/user/shop/{shopId}":
+    get:
+      summary: ショップ詳細情報取得
+      operationId: getShopById
+      tags:
+        - Shop
+      parameters:
+        - name: shopId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 9918f2af-5721-478c-ae7d-1
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Shop"
+              example:
+                  id: "5c3467e2-9dfd-482f-82a8-f84f6e666604"
+                  name: "テストショップ"
+                  image: "テストショップ"
+                  caption: "ここにはショップの見出しが入ります"
+                  description: "ここにはショップの詳細が入ります"
+                  bookmarkFlg: false
+                  item:
+                    - id: "18225e46-9b2c-43c6-8c4c-0f38d2fc455c"
+                      name: "サンプルアイテム"
+                      image: "ここに商品の画像URLが入ります"
+                      caption: "ここに商品の見出しが入ります"
+                      description: "ここに商品の詳細説明が入ります"
+                      price: 4000
+                      stocks: 4
+                      onSale: true
+                      deliveryDate: 5
+                      bookmarkFlg: true
+                    - id: "28225e46-9b2c-43c6-8c4c-0f38d2fc455c"
+                      name: "サンプルアイテム"
+                      image: "ここに商品の画像URLが入ります"
+                      caption: "ここに商品の見出しが入ります"
+                      description: "ここに商品の詳細説明が入ります"
+                      price: 4000
+                      stocks: 4
+                      onSale: true
+                      deliveryDate: 5
+                      bookmarkFlg: true
+                    - id: "38225e46-9b2c-43c6-8c4c-0f38d2fc455c"
+                      name: "サンプルアイテム"
+                      image: "ここに商品の画像URLが入ります"
+                      caption: "ここに商品の見出しが入ります"
+                      description: "ここに商品の詳細説明が入ります"
+                      price: 4000
+                      stocks: 4
+                      onSale: true
+                      deliveryDate: 5
+                      bookmarkFlg: true
+                    - id: "48225e46-9b2c-43c6-8c4c-0f38d2fc455c"
+                      name: "サンプルアイテム"
+                      image: "ここに商品の画像URLが入ります"
+                      caption: "ここに商品の見出しが入ります"
+                      description: "ここに商品の詳細説明が入ります"
+                      price: 4000
+                      stocks: 4
+                      onSale: true
+                      deliveryDate: 5
+                      bookmarkFlg: true
+                    - id: "58225e46-9b2c-43c6-8c4c-0f38d2fc455c"
+                      name: "サンプルアイテム"
+                      image: "ここに商品の画像URLが入ります"
+                      caption: "ここに商品の見出しが入ります"
+                      description: "ここに商品の詳細説明が入ります"
+                      price: 4000
+                      stocks: 4
+                      onSale: true
+                      deliveryDate: 5
+                      bookmarkFlg: true
+                    - id: "68225e46-9b2c-43c6-8c4c-0f38d2fc455c"
+                      name: "サンプルアイテム"
+                      image: "ここに商品の画像URLが入ります"
+                      caption: "ここに商品の見出しが入ります"
+                      description: "ここに商品の詳細説明が入ります"
+                      price: 4000
+                      stocks: 4
+                      onSale: true
+                      deliveryDate: 5
+                      bookmarkFlg: true
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+
+  "/user/shop/bookmark":
+    get:
+      summary: ブックマークしているショップ一覧取得
+      operationId: getBookmarkedShops
+      tags:
+        - Shop
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Shop"
+                example:
+                  - id: 9918f2af-5721-478c-ae7d-1
+                    name: ここにはショップ名が入ります
+                    image: ここにはショップの画像が入ります
+                    caption: ここにはショップの見出しが入ります
+                    description: ここにはショップの詳細説明が入ります
+                    bookmarkFlg: true
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 9918f2af-5721-478c-ae7d-2
+                    name: ここにはショップ名が入ります
+                    image: ここにはショップの画像が入ります
+                    caption: ここにはショップの見出しが入ります
+                    description: ここにはショップの詳細説明が入ります
+                    bookmarkFlg: true
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 9918f2af-5721-478c-ae7d-3
+                    name: ここにはショップ名が入ります
+                    image: ここにはショップの画像が入ります
+                    caption: ここにはショップの見出しが入ります
+                    description: ここにはショップの詳細説明が入ります
+                    bookmarkFlg: true
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 9918f2af-5721-478c-ae7d-4
+                    name: ここにはショップ名が入ります
+                    image: ここにはショップの画像が入ります
+                    caption: ここにはショップの見出しが入ります
+                    description: ここにはショップの詳細説明が入ります
+                    bookmarkFlg: true
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 9918f2af-5721-478c-ae7d-5
+                    name: ここにはショップ名が入ります
+                    image: ここにはショップの画像が入ります
+                    caption: ここにはショップの見出しが入ります
+                    description: ここにはショップの詳細説明が入ります
+                    bookmarkFlg: true
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 9918f2af-5721-478c-ae7d-6
+                    name: ここにはショップ名が入ります
+                    image: ここにはショップの画像が入ります
+                    caption: ここにはショップの見出しが入ります
+                    description: ここにはショップの詳細説明が入ります
+                    bookmarkFlg: true
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 9918f2af-5721-478c-ae7d-7
+                    name: ここにはショップ名が入ります
+                    image: ここにはショップの画像が入ります
+                    caption: ここにはショップの見出しが入ります
+                    description: ここにはショップの詳細説明が入ります
+                    bookmarkFlg: true
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 9918f2af-5721-478c-ae7d-8
+                    image: ここにはショップの画像が入ります
+                    name: ここにはショップ名が入ります
+                    caption: ここにはショップの見出しが入ります
+                    description: ここにはショップの詳細説明が入ります
+                    bookmarkFlg: true
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+    put:
+      summary: ショップをブックマークリストに追加
+      operationId: bookmarkShop
+      tags:
+        - Shop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - shopId
+                - bookmarkFlg
+              properties:
+                shopId:
+                  type: string
+                  description: ショップID
+                  example: 0918f2af-5721-478c-ae7d-312314141
+                bookmarkFlg:
+                  type: boolean
+                  description: ブックマーク状態
+                  example: true
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: string
+                example: success
+                description: 更新完了のメッセージ
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+
+  "/user/item":
+    get:
+      summary: 商品一覧取得
+      operationId: getAllItems
+      tags:
+        - Item
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Item"
+                example:
+                  - id: 0918f2af-5721-478c-ae7d-531323141431
+                    name: ゲームコントローラー
+                    image: '/item2_1.png'
+                    caption: NintendoSwitch,Xbox,PS4,5対応ゲームコントローラーです。連射機能つき
+                    description: NintendoSwitch,Xbox,PS4,5対応ゲームコントローラーです。連射機能つき
+                    price: 2,980
+                    stocks: 3
+                    onSale: true
+                    deliveryDate: 2
+                  - id: 0918f2af-5721-478c-ae7d-531323141432
+                    name: タブレット
+                    image: '/item-list.png'
+                    caption: タブレット
+                    description: タブレット
+                    price: 3000
+                    stocks: 1
+                    onSale: true
+                    deliveryDate: 2
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 0918f2af-5721-478c-ae7d-531323141433
+                    name: サンプル
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 1
+                    onSale: true
+                    deliveryDate: 2
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 0918f2af-5721-478c-ae7d-531323141434
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 2
+                    onSale: true
+                    deliveryDate: 3
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 0918f2af-5721-478c-ae7d-531323141435
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 3
+                    onSale: true
+                    deliveryDate: 2
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 0918f2af-5721-478c-ae7d-531323141436
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 2
+                    onSale: true
+                    deliveryDate: 2
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 0918f2af-5721-478c-ae7d-531323141437
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 3
+                    onSale: true
+                    deliveryDate: 2
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 0918f2af-5721-478c-ae7d-531323141438
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 1
+                    onSale: true
+                    deliveryDate: 2
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 0918f2af-5721-478c-ae7d-531323141439
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 3
+                    onSale: true
+                    deliveryDate: 2
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 0918f2af-5721-478c-ae7d-531323141410
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 1
+                    onSale: true
+                    deliveryDate: 4
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 0918f2af-5721-478c-ae7d-531323141411
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 1
+                    onSale: true
+                    deliveryDate: 2
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 0918f2af-5721-478c-ae7d-531323141412
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 1
+                    onSale: true
+                    deliveryDate: 2
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 0918f2af-5721-478c-ae7d-531323141413
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 2
+                    onSale: true
+                    deliveryDate: 2
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 0918f2af-5721-478c-ae7d-531323141414
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 1
+                    onSale: true
+                    deliveryDate: 2
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+                  - id: 0918f2af-5721-478c-ae7d-531323141415
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 2
+                    onSale: true
+                    deliveryDate: 1
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  "/user/item/{itemId}":
+    get:
+      summary: 商品詳細情報取得
+      operationId: getItemById
+      tags:
+        - Item
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          description: 商品ID
+          schema:
+            type: string
+          example: 9918f2af-5721-478c-ae7d-1
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Item"
+              example:
+                    id: 0918f2af-5721-478c-ae7d-531323141431
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 3
+                    onSale: true
+                    deliveryDate: 2
+                    review:
+                      - id: "4390c057-2997-4977-8744-0fe34edc8e7c"
+                        title: "商品レビュー投稿タイトル１"
+                        comment: "商品レビュー投稿コメント１"
+                        rating: 3.4
+                        created_at: "2023-12-10T13:20:36.773617+09:00"
+                        updated_at: "2023-12-10T13:20:36.773617+09:00"
+                      - id: "4390c057-2997-4977-8744-0fe34edc8e7c"
+                        title: "商品レビュー投稿タイトル２"
+                        comment: "商品レビュー投稿コメント２"
+                        rating: 1
+                        created_at: "2023-12-10T13:20:36.773617+09:00"
+                        updated_at: "2023-12-10T13:20:36.773617+09:00"
+                      - id: "4390c057-2997-4977-8744-0fe34edc8e7c"
+                        title: "商品レビュー投稿タイトル３"
+                        comment: "商品レビュー投稿コメント３"
+                        rating: 4
+                        created_at: "2023-12-10T13:20:36.773617+09:00"
+                        updated_at: "2023-12-10T13:20:36.773617+09:00"
+                    created_at: "2023-09-15T12:57:05.467611Z"
+                    updated_at: "2023-09-15T12:57:05.467611Z"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  /user/item/bookmark:
+    get:
+      summary: 欲しいものリスト取得
+      operationId: getBookmarkedItems
+      tags:
+        - Item
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Item"
+                example:
+                  - id: 0918f2af-5721-478c-ae7d-531323141431
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 3
+                    onSale: true
+                    deliveryDate: 2
+                    bookmarkFlg: true
+                  - id: 0918f2af-5721-478c-ae7d-531323141432
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 1
+                    onSale: true
+                    deliveryDate: 2
+                    bookmarkFlg: true
+                  - id: 0918f2af-5721-478c-ae7d-531323141433
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 1
+                    onSale: true
+                    deliveryDate: 2
+                    bookmarkFlg: true
+                  - id: 0918f2af-5721-478c-ae7d-531323141434
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 2
+                    onSale: true
+                    deliveryDate: 3
+                    bookmarkFlg: true
+                  - id: 0918f2af-5721-478c-ae7d-531323141435
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 3
+                    onSale: true
+                    deliveryDate: 2
+                    bookmarkFlg: true
+                  - id: 0918f2af-5721-478c-ae7d-531323141436
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 2
+                    onSale: true
+                    deliveryDate: 2
+                    bookmarkFlg: true
+                  - id: 0918f2af-5721-478c-ae7d-531323141437
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 3
+                    onSale: true
+                    deliveryDate: 2
+                    bookmarkFlg: true
+                  - id: 0918f2af-5721-478c-ae7d-531323141438
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 1
+                    onSale: true
+                    deliveryDate: 2
+                    bookmarkFlg: true
+                  - id: 0918f2af-5721-478c-ae7d-531323141439
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 3
+                    onSale: true
+                    deliveryDate: 2
+                    bookmarkFlg: true
+                  - id: 0918f2af-5721-478c-ae7d-531323141410
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 1
+                    onSale: true
+                    deliveryDate: 4
+                    bookmarkFlg: true
+                  - id: 0918f2af-5721-478c-ae7d-531323141411
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 1
+                    onSale: true
+                    deliveryDate: 2
+                    bookmarkFlg: true
+                  - id: 0918f2af-5721-478c-ae7d-531323141412
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 1
+                    onSale: true
+                    deliveryDate: 2
+                    bookmarkFlg: true
+                  - id: 0918f2af-5721-478c-ae7d-531323141413
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 2
+                    onSale: true
+                    deliveryDate: 2
+                    bookmarkFlg: true
+                  - id: 0918f2af-5721-478c-ae7d-531323141414
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 1
+                    onSale: true
+                    deliveryDate: 2
+                    bookmarkFlg: true
+                  - id: 0918f2af-5721-478c-ae7d-531323141415
+                    name: サンプルアイテム
+                    image: /item-list.png
+                    caption: ここには商品の見出しが入ります
+                    description: ここには商品の詳細説明が入ります
+                    price: 3000
+                    stocks: 2
+                    onSale: true
+                    deliveryDate: 1
+                    bookmarkFlg: true
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+    put:
+      summary: 商品を欲しいものリストに追加
+      operationId: bookmarkItem
+      tags:
+        - Item
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - itemId
+                - bookmarkFlg
+              properties:
+                itemId:
+                  type: string
+                  description: 商品ID
+                  example: 0918f2af-5721-478c-ae7d-312314141
+                bookmarkFlg:
+                  type: boolean
+                  description: ブックマークの状態
+                  example: true
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: string
+                example: success
+                description: 更新完了のメッセージ
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  "/user/item/{itemId}/review":
+    post:
+      summary: 商品にレビューを投稿
+      operationId: postReview
+      tags:
+        - Item
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 9918f2af-5721-478c-ae7d-1
+        - name: title
+          in: query
+          required: true
+          schema:
+            type: string
+          example: ここにレビューのタイトルを入れてください
+        - name: comment
+          in: query
+          required: true
+          schema:
+            type: string
+          example: ここにレビューの内容を入れてください
+        - name: rating
+          in: query
+          required: true
+          schema:
+            type: number
+          example: 3.4
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  /user/order:
+    get:
+      summary: 注文履歴一覧取得
+      operationId: getUserOrderHistory
+      tags:
+        - Order
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+              example:
+                  - id: 0918f2af-5721-478c-ae7d-531323141431
+                    items:
+                      - id: c5455079-3f97-407e-9d00-b78cb815fcf8
+                        name: ここに商品名が入ります１
+                        image: 商品画像URL
+                        caption: ここには商品の見出しが入ります１
+                        description: ここには商品名の詳細が入ります１
+                        totalPrice: 12000
+                        quantity: 3
+                        itemId: 5fcd8b0c-2a19-4d1d-85fe-0f0c26001a31
+                      - id: c5455079-3f97-407e-9d00-b78cb815fcf9
+                        name: ここに商品名が入ります２
+                        image: 商品画像URL
+                        caption: ここには商品の見出しが入ります２
+                        description: ここには商品名の詳細が入ります２
+                        totalPrice: 12000
+                        quantity: 3
+                        itemId: 5fcd8b0c-2a19-4d1d-85fe-0f0c26001a31
+                    postalCode: 1010011
+                    tel: 8011112222
+                    country: 日本
+                    prefecture: 東京都
+                    city: 新宿区
+                    address: 中央
+                    building: ビル101号
+                    orderedAt: "0001-01-01T09:18:59+09:18"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+    post:
+      summary: 注文
+      operationId: orderItem
+      tags:
+        - Order
+      parameters:
+        - name: shippingInfoId
+          in: query
+          description: 発送情報ID
+          required: true
+          schema:
+            type: string
+            example: c5f12550-70dc-4804-a486-0f073451845d
+        - name: items
+          in: query
+          description: カート内の商品
+          required: true
+          schema:
+            type: array
+            items:
+              type: object
+            example:
+              - itemId: c5f12550-70dc-4804-a486-0f073451845d
+                quantity: 2
+              - itemId: 5fcd8b0c-2a19-4d1d-85fe-0f0c26001a31
+                quantity: 3
+      responses:
+        "200":
+          description: order success
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  "/user/order/{orderId}":
+    delete:
+      summary: 注文キャンセル
+      operationId: deleteOrder
+      tags:
+        - Order
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 9918f2af-5721-478c-ae7d-1
+      responses:
+        "200":
+          description: delete success
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+    get:
+      summary: 注文詳細取得
+      operationId: getOrderById
+      tags:
+        - Order
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 9918f2af-5721-478c-ae7d-1
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  /user/review:
+    get:
+      summary: 自分が投稿したレビューの一覧取得
+      operationId: getMyReviews
+      tags:
+        - Review
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
+              example:
+                  - id: 0918f2af-5721-478c-ae7d-531323141431
+                    title: ここにレビューのタイトルを入れてください
+                    comment: ここにレビューの内容を入れてください
+                    rating: 1
+                    createdAt: "0001-01-01T09:18:59+09:18"
+                    updatedAt: "0001-01-01T09:18:59+09:18"
+                  - id: 0918f2af-5721-478c-ae7d-531323141432
+                    title: ここにレビューのタイトルを入れてください
+                    comment: ここにレビューの内容を入れてください
+                    rating: 3.4
+                    createdAt: "0001-01-01T09:18:59+09:18"
+                    updatedAt: "0001-01-01T09:18:59+09:18"
+                  - id: 0918f2af-5721-478c-ae7d-531323141433
+                    title: ここにレビューのタイトルを入れてください
+                    comment: ここにレビューの内容を入れてください
+                    rating: 5
+                    createdAt: "0001-01-01T09:18:59+09:18"
+                    updatedAt: "0001-01-01T09:18:59+09:18"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+  "/user/review/{reviewId}":
+    put:
+      summary: 自分が投稿したレビューを更新
+      operationId: updateMyReview
+      tags:
+        - Review
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 9918f2af-5721-478c-ae7d-1
+        - name: title
+          in: query
+          required: true
+          schema:
+            type: string
+          example: ここにレビューのタイトルを入れてください
+        - name: comment
+          in: query
+          required: true
+          schema:
+            type: string
+          example: ここにレビューの内容を入れてください
+        - name: rating
+          in: query
+          required: true
+          schema:
+            type: number
+          example: 3.4
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+    delete:
+      summary: 自分が投稿したレビューを削除
+      operationId: deleteMyReview
+      tags:
+        - Review
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 9918f2af-5721-478c-ae7d-1
+      responses:
+        "200":
+          description: delete success
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+    get:
+      summary: 自分が投稿したレビューの詳細取得
+      operationId: getMyReviewDetail
+      tags:
+        - Review
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 9918f2af-5721-478c-ae7d-1
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
+        "400":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+
+
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - firstName
+        - lastName
+        - gender
+        - tel
+        - address
+        - birthday
+        - email
+        - password
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: string
+          example: 33df9741-6dbd-4959-9d9a-1
+        firstName:
+          type: string
+          example: 佐藤
+        lastName:
+          type: string
+          example: 太郎
+        gender:
+          type: string
+          example: male
+          enum:
+            - male
+            - female
+            - unknown
+        tel:
+          type: string
+          example: "09012345678"
+        address:
+          type: string
+          example: 東京都新宿区
+        birthday:
+          type: string
+          example: "1994-02-03"
+        email:
+          type: string
+          example: example@gmail.cpm
+        password:
+          type: string
+          example: test1111
+        created_at:
+          type: string
+          example: "2023-9-2"
+        updated_at:
+          type: string
+          example: "2023-9-4"
+
+    UserResponse:
+      type: object
+      required:
+        - id
+        - firstName
+        - firstNameKana
+        - lastName
+        - lastNameKana
+        - gender
+        - birthday
+        - email
+      properties:
+        id:
+          type: string
+          example: 33df9741-6dbd-4959-9d9a-1
+        firstName:
+          type: string
+          example: 佐藤
+        firstNameKana:
+          type: string
+          example: サトウ
+        lastName:
+          type: string
+          example: 太郎
+        lastNameKana:
+          type: string
+          example: サトウ
+        gender:
+          type: string
+          example: male
+          enum:
+            - male
+            - female
+            - unknown
+        birthday:
+          type: string
+          example: "19940203"
+        email:
+          type: string
+          example: example@gmail.cpm
+
+    ShippingInfo:
+      type: object
+      required:
+        - id
+        - postalCode
+        - tel
+        - country
+        - prefecture
+        - city
+        - address
+        - building
+      properties:
+        id:
+          type: string
+          description: 発送情報ID
+          example: 9918f2af-5721-478c-ae7d-1
+        postalCode:
+          type: number
+          description: 郵便番号
+          example: 1010011
+        tel:
+          type: string
+          description: 電話番号
+          example: 8011112222
+        country:
+          type: string
+          description: 国
+          example: Japan
+        prefecture:
+          type: string
+          description: 都道府県
+          example: 東京都
+        city:
+          type: string
+          description: 市区町村
+          example: 新宿区
+        address:
+          type: string
+          description: 住所
+          example: 中央
+        building:
+          type: string
+          description: 建物名
+          example: タワー
+
+    CreditCard:
+      type: object
+      required:
+        - id
+        - holderName
+        - number
+        - expireDate
+      properties:
+        id:
+          type: string
+          description: 発送情報ID
+          example: 9918f2af-5721-478c-ae7d-1
+        holderName:
+          type: string
+          description: 所有者名
+          example: ヤマダタロウ
+        number:
+          type: number
+          description: クレジットカード番号
+          example: 1111222233334444
+        expireDate:
+          type: number
+          description: 有効期限
+          example: 20450101
+
+    Shop:
+      type: object
+      required:
+        - id
+        - name
+        - image
+        - caption
+        - description
+        - bookmarkFlg
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: string
+          description: ショップID
+          example: 0918f2af-5721-478c-ae7d-531323141431
+        name:
+          type: string
+          description: ショップ名
+          example: ここにはショップ名が入ります
+        image:
+          type: string
+          description: ショップの画像URL
+          example: ここにはショップの画像URLが入ります
+        caption:
+          type: string
+          description: ショップ見出し
+          example: ここにはショップの見出しが入りますここにはショップの見出しが入ります
+        description:
+          type: string
+          description: ショップ詳細
+          example: ここにはショップの詳細情報が入りますここにはショップの詳細情報が入りますここにはショップの詳細情報が入りますここにはショップの詳細情報が入りますここにはショップの詳細情報が入りますここにはショップの詳細情報が入りますここにはショップの詳細情報が入りますここにはショップの詳細情報が入ります
+        bookmarkFlg:
+          type: boolean
+          description: ブックマークしているか
+          example: true
+        items:
+          type: array
+          description: ショップが持っている商品一覧
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: 商品ID
+              name:
+                type: string
+                description: 商品名
+              image:
+                type: string
+                description: 商品画像URL
+              caption:
+                type: string
+                description: 商品見出し
+              description:
+                type: string
+                description: 商品詳細
+              price:
+                type: number
+                description: 価格
+              stocks:
+                type: number
+                description: 購入した商品の個数
+              onSale:
+                type: boolean
+                description: セール中かどうか
+              deliveryDate:
+                type: string
+                description: お届けまでにかかる日数
+              bookmarkFlg:
+                type: boolean
+                description: ブックマークしているか
+        created_at:
+          type: string
+          description: 商品追加日
+          example: "2023-09-15T12:57:05.467611Z"
+        updated_at:
+          type: string
+          description: 商品更新日
+          example: "2023-09-15T12:57:05.467611Z"
+
+
+    Item:
+      type: object
+      required:
+        - id
+        - name
+        - price
+        - stocks
+        - onSale
+        - deliveryDate
+        - review
+      properties:
+        id:
+          type: string
+          description: 商品ID
+          example: 0918f2af-5721-478c-ae7d-531323141431
+        name:
+          type: string
+          description: 商品名
+          example: サンプルアイテム
+        image:
+          type: string
+          description: 商品の画像URL
+          example: /item-list.png
+        caption:
+          type: string
+          description: 商品見出し
+          example: ここには商品の見出しが入りますここには商品の見出しが入ります
+        description:
+          type: string
+          description: 商品詳細
+          example: ここには商品の詳細情報が入りますここには商品の詳細情報が入りますここには商品の詳細情報が入りますここには商品の詳細情報が入りますここには商品の詳細情報が入りますここには商品の詳細情報が入りますここには商品の詳細情報が入りますここには商品の詳細情報が入ります
+        price:
+          type: number
+          description: 価格
+          example: 3000
+        stocks:
+          type: number
+          description: 在庫数
+          example: 3
+        onSale:
+          type: boolean
+          description: セール中かどうか
+          example: true
+        deliveryDate:
+          type: number
+          description: 当日から到着までの日数
+          example: 3
+        bookmarkFlg:
+          type: boolean
+          description: ブックマークしているか
+          example: false
+        review:
+          type: array
+          description: 商品のレビュー
+          example:
+              - id: "4390c057-2997-4977-8744-0fe34edc8e7c"
+                title: "商品レビュー投稿タイトル１"
+                comment: "商品レビュー投稿コメント１"
+                rating: 3.4
+                created_at: "2023-12-10T13:20:36.773617+09:00"
+                updated_at: "2023-12-10T13:20:36.773617+09:00"
+              - id: "4390c057-2997-4977-8744-0fe34edc8e7c"
+                title: "商品レビュー投稿タイトル２"
+                comment: "商品レビュー投稿コメント２"
+                rating: 1
+                created_at: "2023-12-10T13:20:36.773617+09:00"
+                updated_at: "2023-12-10T13:20:36.773617+09:00"
+              - id: "4390c057-2997-4977-8744-0fe34edc8e7c"
+                title: "商品レビュー投稿タイトル３"
+                comment: "商品レビュー投稿コメント３"
+                rating: 4
+                created_at: "2023-12-10T13:20:36.773617+09:00"
+                updated_at: "2023-12-10T13:20:36.773617+09:00"
+        created_at:
+          type: string
+          description: 商品追加日
+          example: "2023-09-15T12:57:05.467611Z"
+        updated_at:
+          type: string
+          description: 商品更新日
+          example: "2023-09-15T12:57:05.467611Z"
+
+    Order:
+      type: object
+      required:
+        - id
+        - items
+        - postalCode
+        - tel
+        - country
+        - prefecture
+        - city
+        - address
+        - building
+        - orderedAt
+      properties:
+        id:
+          type: string
+          description: 注文ID
+          example: 0918f2af-5721-478c-ae7d-531323141431
+        items:
+          type: array
+          description: 注文した商品
+          example:
+              - id: c5455079-3f97-407e-9d00-b78cb815fcf8
+                name: ここに商品名が入ります１
+                image: 商品画像URL
+                caption: ここには商品の見出しが入ります１
+                description: ここには商品名の詳細が入ります１
+                totalPrice: 12000
+                stocks: 3
+                onSale: true
+                itemId: 5fcd8b0c-2a19-4d1d-85fe-0f0c26001a31
+              - id: c5455079-3f97-407e-9d00-b78cb815fcf9
+                name: ここに商品名が入ります２
+                image: 商品画像URL
+                caption: ここには商品の見出しが入ります２
+                description: ここには商品名の詳細が入ります２
+                totalPrice: 12000
+                stocks: 3
+                onSale: true
+                itemId: 5fcd8b0c-2a19-4d1d-85fe-0f0c26001a31
+        postalCode:
+          type: string
+          description: お届け先郵便番号
+          example: 1010011
+        tel:
+          type: string
+          description: 電話番号
+          example: 8011112222
+        country:
+          type: string
+          description: 国
+          example: 日本
+        prefecture:
+          type: string
+          description: 都道府県
+          example: 東京都
+        city:
+          type: string
+          description: 市区町村
+          example: 新宿区
+        address:
+          type: string
+          description: 住所
+          example: 中央
+        building:
+          type: string
+          description: 建物名
+          example: ビル101号
+        orderedAt:
+          type: string
+          description: 注文日
+          example: "0001-01-01T09:18:59+09:18"
+
+    Review:
+      type: object
+      required:
+        - id
+        - title
+        - comment
+        - rating
+      properties:
+        id:
+          type: string
+          description: レビューID
+          example: 0918f2af-5721-478c-ae7d-531323141431
+        title:
+          type: string
+          description: タイトル
+          example:  ここにレビューのタイトルを入れてください
+        comment:
+          type: string
+          description: コメント
+          example: ここにレビューの内容を入れてください
+        rating:
+          type: number
+          description: ５段階評価
+          example: 3.4
+
+    Error400:
+      type: object
+      required:
+        - status
+        - method
+        - path
+        - message
+      properties:
+        status:
+          type: integer
+          description: ステータスコード
+          example: 400
+        method:
+          type: string
+          description: リクエストメソッド
+          example: POST
+        path:
+          type: string
+          description: リクエストパス
+          example: "/user/{path}"
+        message:
+          type: object
+          description: エラーメッセージ
+          example:
+            error: title
+            detail: error message is here
+
+    Error401:
+      type: object
+      required:
+        - status
+        - method
+        - path
+        - message
+      properties:
+        status:
+          type: integer
+          description: ステータスコード
+          example: 401
+        method:
+          type: string
+          description: リクエストメソッド
+          example: POST
+        path:
+          type: string
+          description: リクエストパス
+          example: "/user/{path}"
+        message:
+          type: object
+          description: エラーメッセージ
+          example:
+            error: title
+            detail: error message is here
+
+    Error404:
+      type: object
+      required:
+        - status
+        - method
+        - path
+        - message
+      properties:
+        status:
+          type: integer
+          description: ステータスコード
+          example: 404
+        method:
+          type: string
+          description: リクエストメソッド
+          example: POST
+        path:
+          type: string
+          description: リクエストパス
+          example: "/user/{path}"
+        message:
+          type: object
+          description: エラーメッセージ
+          example:
+            error: not found
+            detail: the server can not find the requested resource.
+
+    Error500:
+      type: object
+      required:
+        - status
+        - method
+        - path
+        - message
+      properties:
+        status:
+          type: integer
+          description: ステータスコード
+          example: 500
+        method:
+          type: string
+          description: リクエストメソッド
+          example: POST
+        path:
+          type: string
+          description: リクエストパス
+          example: "/user/{path}"
+        message:
+          type: object
+          description: エラーメッセージ
+          example:
+            error: internal server error
+            detail: please contact system administrator

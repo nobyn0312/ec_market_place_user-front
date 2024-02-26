@@ -1,0 +1,21 @@
+.mB8 {
+  margin-bottom: 8px;
+}
+.history {
+  max-width: 390px;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 0;
+  padding-top: 24px;
+  margin-bottom: 32px;
+}
+.bold {
+  font-weight: bold;
+}
+
+.card {
+  margin-bottom: 30px;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.4);
+  border: 1px solid #ececec;
+  padding:8px;
+}
