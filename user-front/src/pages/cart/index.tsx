@@ -3,45 +3,62 @@ import React, { useEffect, useState } from 'react'
 import styles from './cart.module.css'
 import { Button } from '@/components/Button/Button';
 import { Container } from '@/components/Container/Container';
-// import CartState from '@/components/cart/CartState';
-// import CartContext from '@/context/CartContext';
 import { useAtom } from "jotai/index";
-import { incrementCountAction } from "@/pages/_app";
-
-
-import {Item , ItemApi } from '../../../types/axios';
-
-
-import ItemMap from '@/features/item/itemMap';
+import { cartAtom } from "@/pages/_app";
+import { Item, ItemApi } from '../../../types/axios';
 import axios from 'axios';
+import { ItemDescription } from '@/components/ItemDescription/ItemDescription';
+import { HStack } from '@/components/HStack/Hstack';
 
-const itemApi = new ItemApi();
+const Cart = (item: Item) => {
+  const [cart, setCart] = useAtom(cartAtom);
+  const [count, setCount] = useState(0);
 
-const Cart = () => {
-  const [count, incrementCount] = useAtom(incrementCountAction);
-  // const { cartState, setCartState } = useContext(CartContext);
+  // const map = cart.reduce(
+  //   (acc, curr) => acc.set(curr, (acc.get(curr) || 0) + 1),
+  //   new Map()
+  // );
+
+  const removeCart = () => {
+    console.log("rem");
+  }
+
+  useEffect(() => {
+    //localstorageはレンダリング時には存在しない？のでuseeffectに入れる
+    const cartItem = localStorage.getItem('cart');
+    //JSON形式はそのままだと値を取り出せないのでparseで変換する
+    const parsedCart = cartItem ? JSON.parse(cartItem) : [];
+    setCart(parsedCart);
+    //parsedCart.idだと値が取れなかったので、配列と番号を指定して取得
+    for (var i = 0, l = parsedCart.length; i < l; i++) {
+      console.log(parsedCart[i].id)
+    }
+
+  }, []);
 
 
-  // useEffect(() => {
-  //   console.log(cartState);
-  // }, [cartState]);
-
-  // 受け取る側の設定
-  axios.get("localhost:3000/cart")
-  .then(response => {
-    setPosts(response.data);
-  })
-    .catch(() => {
-      console.log("通信に失敗しました。")
-    })
 
   return (
     <Container>
-      <div><p>カートのページ</p>
+      <ul className={styles.recommend_list} style={{ paddingTop: '32px' }}>
+        {cart.map((item) => (
+          <li className={styles.card} key={item.id}>
+            {/* ここにアイテムの表示を行うコンポーネントを追加します */}
+            <ItemDescription
+              image={item.image}
+              itemTitle={item.name}
+              price={item.price}
+            />
+            <button onClick={removeCart}>削除</button>
 
-        {/* <button className={"px-3 py-1.5 rounded bg-green-700 text-white"} onClick={incrementCount}>Count Up</button> */}
-        <p>count: {count}</p>
-      </div>
+            <HStack spacing='sm' position='left' style={{ alignItems: 'center' }}>
+              <button onClick={() => setCount(cnt => cnt - 1)}>-</button>
+              <p>{count}</p>
+              <button onClick={() => setCount(cnt => cnt + 1)}>+</button>
+            </HStack>
+          </li>
+        ))}
+      </ul>
     </Container>
   );
 };

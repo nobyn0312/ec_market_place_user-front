@@ -10,20 +10,20 @@ import ToggleBlk from 'public/icons/toggleBlk.svg';
 import { Container } from '../Container/Container';
 import { Typography } from '../Typography/Typography';
 import Link from 'next/link';
-import { useAtom } from "jotai";
-import { incrementCountAction } from "@/pages/_app";
+import { useAtom } from "jotai/index";
+import { cartAtom } from "@/pages/_app";
+
 
 
 const Header = () => {
+
+  const [cart, setCart] = useAtom(cartAtom);
+
+
   const [openMenu, setOpenMenu] = useState(false)
   const handleMenuOpen = () => {
-    console.log("ハンバーガー");
     setOpenMenu(!openMenu);
   }
-
-  // カートの数値変更
-  const [cartQuantity, setCartQuantity] = useState(0)
-
 
   return (
     <>
@@ -35,30 +35,30 @@ const Header = () => {
             </button>
           </div>
           <h1>
-            <a href="/">
+            <Link href="/">
               <img src={logo.src} alt="" />
-            </a>
+            </Link>
           </h1>
           <div className={styles.cartIcon}>
             <Link href={"/cart"}>
               <img src={cartIcon.src} alt="cart" />
-              <p className={styles.cartNum}>{cartQuantity}</p>
+              <p className={styles.cartNum}>{cart.length}</p>
             </Link>
           </div>
         </div>
 
         <nav className={openMenu ? `${styles.navMenu} ${styles.showMenu}` : styles.navMenu}>
           <h1 className={`${styles.navLogo}`}>
-            <a href="/">
+            <Link href="/">
               <img src={logo.src} alt="" />
-            </a>
+            </Link>
           </h1>
           <ul>
-            <li><a href="">ホーム</a></li>
-            <li><a href="">アカウント情報</a></li>
-            <li><a href="/order/history">注文履歴</a></li>
-            <li><a href="/shop/list">お気に入りショップ</a></li>
-            <li><a href="">ログアウト</a></li>
+            <li><Link href="">ホーム</Link></li>
+            <li><Link href="">アカウント情報</Link></li>
+            <li><Link href="/order/history">注文履歴</Link></li>
+            <li><Link href="/shop/list">お気に入りショップ</Link></li>
+            <li><Link href="">ログアウト</Link></li>
           </ul>
           <button className={`${styles.Menunavbtn}`} onClick={handleMenuOpen} type="button" >
             <Icon src={ToggleBlk.src} size='md' />

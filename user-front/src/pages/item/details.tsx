@@ -2,19 +2,16 @@ import React from 'react'
 import styles from './item.module.css'
 import { Container } from '@/components/Container/Container'
 import { Carousel } from '@/components/Carousel/Carousel';
-// import { Splide, SplideSlide } from "@splidejs/react-splide";
-import '@splidejs/splide/css'; // デフォルトのテーマを読み込んでいます（コアスタイルのみ読み込む設定も可能）
-import shopthumb1 from '/public/sampleshop.png'
+import '@splidejs/splide/css';
 import { Button } from '@/components/Button/Button';
 import { HStack } from '@/components/HStack/Hstack';
 import { Typography } from '@/components/Typography/Typography';
 import { Shopname } from '@/components/Shopname/Shopname'
-
 import shopthumb2 from '/public/shopthumb2.png'
 import Image from 'next/image';
-import item1 from '/public/item2_1.png';
-import item2 from '/public/item2_2.png'
-import item3 from '/public/item2_3.png'
+import item1 from '/public/controller.png';
+import item2 from '/public/controller_explanation1.png'
+import item3 from '/public/controller_explanation2.png'
 
 
 const images = [

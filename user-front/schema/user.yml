@@ -1286,7 +1286,7 @@ paths:
                 example:
                   - id: 0918f2af-5721-478c-ae7d-531323141431
                     name: ゲームコントローラー
-                    image: '/item2_1.png'
+                    image: '/controller.png'
                     caption: NintendoSwitch,Xbox,PS4,5対応ゲームコントローラーです。連射機能つき
                     description: NintendoSwitch,Xbox,PS4,5対応ゲームコントローラーです。連射機能つき
                     price: 2,980
@@ -1295,18 +1295,18 @@ paths:
                     deliveryDate: 2
                   - id: 0918f2af-5721-478c-ae7d-531323141432
                     name: タブレット
-                    image: '/item-list.png'
+                    image: '/tablet.png'
                     caption: タブレット
                     description: タブレット
-                    price: 3000
+                    price: 17,980
                     stocks: 1
                     onSale: true
                     deliveryDate: 2
                     created_at: "2023-09-15T12:57:05.467611Z"
                     updated_at: "2023-09-15T12:57:05.467611Z"
                   - id: 0918f2af-5721-478c-ae7d-531323141433
-                    name: サンプル
-                    image: /item-list.png
+                    name: イヤホン
+                    image: /earphone.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1317,7 +1317,7 @@ paths:
                     updated_at: "2023-09-15T12:57:05.467611Z"
                   - id: 0918f2af-5721-478c-ae7d-531323141434
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1328,7 +1328,7 @@ paths:
                     updated_at: "2023-09-15T12:57:05.467611Z"
                   - id: 0918f2af-5721-478c-ae7d-531323141435
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1339,7 +1339,7 @@ paths:
                     updated_at: "2023-09-15T12:57:05.467611Z"
                   - id: 0918f2af-5721-478c-ae7d-531323141436
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1350,7 +1350,7 @@ paths:
                     updated_at: "2023-09-15T12:57:05.467611Z"
                   - id: 0918f2af-5721-478c-ae7d-531323141437
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1361,7 +1361,7 @@ paths:
                     updated_at: "2023-09-15T12:57:05.467611Z"
                   - id: 0918f2af-5721-478c-ae7d-531323141438
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1372,7 +1372,7 @@ paths:
                     updated_at: "2023-09-15T12:57:05.467611Z"
                   - id: 0918f2af-5721-478c-ae7d-531323141439
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1383,7 +1383,7 @@ paths:
                     updated_at: "2023-09-15T12:57:05.467611Z"
                   - id: 0918f2af-5721-478c-ae7d-531323141410
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1394,7 +1394,7 @@ paths:
                     updated_at: "2023-09-15T12:57:05.467611Z"
                   - id: 0918f2af-5721-478c-ae7d-531323141411
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1405,7 +1405,7 @@ paths:
                     updated_at: "2023-09-15T12:57:05.467611Z"
                   - id: 0918f2af-5721-478c-ae7d-531323141412
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1416,7 +1416,7 @@ paths:
                     updated_at: "2023-09-15T12:57:05.467611Z"
                   - id: 0918f2af-5721-478c-ae7d-531323141413
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1427,7 +1427,7 @@ paths:
                     updated_at: "2023-09-15T12:57:05.467611Z"
                   - id: 0918f2af-5721-478c-ae7d-531323141414
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1438,7 +1438,7 @@ paths:
                     updated_at: "2023-09-15T12:57:05.467611Z"
                   - id: 0918f2af-5721-478c-ae7d-531323141415
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1495,11 +1495,11 @@ paths:
                 $ref: "#/components/schemas/Item"
               example:
                     id: 0918f2af-5721-478c-ae7d-531323141431
-                    name: サンプルアイテム
-                    image: /item-list.png
+                    name: タブレット
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 3000
+                    price: 17,980
                     stocks: 3
                     onSale: true
                     deliveryDate: 2
@@ -1566,18 +1566,18 @@ paths:
                   $ref: "#/components/schemas/Item"
                 example:
                   - id: 0918f2af-5721-478c-ae7d-531323141431
-                    name: サンプルアイテム
-                    image: /item-list.png
+                    name: イヤホン
+                    image: /earphone.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 3000
+                    price: 12,980
                     stocks: 3
                     onSale: true
                     deliveryDate: 2
                     bookmarkFlg: true
                   - id: 0918f2af-5721-478c-ae7d-531323141432
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1587,7 +1587,7 @@ paths:
                     bookmarkFlg: true
                   - id: 0918f2af-5721-478c-ae7d-531323141433
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1597,7 +1597,7 @@ paths:
                     bookmarkFlg: true
                   - id: 0918f2af-5721-478c-ae7d-531323141434
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1607,7 +1607,7 @@ paths:
                     bookmarkFlg: true
                   - id: 0918f2af-5721-478c-ae7d-531323141435
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1617,7 +1617,7 @@ paths:
                     bookmarkFlg: true
                   - id: 0918f2af-5721-478c-ae7d-531323141436
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1627,7 +1627,7 @@ paths:
                     bookmarkFlg: true
                   - id: 0918f2af-5721-478c-ae7d-531323141437
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1637,7 +1637,7 @@ paths:
                     bookmarkFlg: true
                   - id: 0918f2af-5721-478c-ae7d-531323141438
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1647,7 +1647,7 @@ paths:
                     bookmarkFlg: true
                   - id: 0918f2af-5721-478c-ae7d-531323141439
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1657,7 +1657,7 @@ paths:
                     bookmarkFlg: true
                   - id: 0918f2af-5721-478c-ae7d-531323141410
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1667,7 +1667,7 @@ paths:
                     bookmarkFlg: true
                   - id: 0918f2af-5721-478c-ae7d-531323141411
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1677,7 +1677,7 @@ paths:
                     bookmarkFlg: true
                   - id: 0918f2af-5721-478c-ae7d-531323141412
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1687,7 +1687,7 @@ paths:
                     bookmarkFlg: true
                   - id: 0918f2af-5721-478c-ae7d-531323141413
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1697,7 +1697,7 @@ paths:
                     bookmarkFlg: true
                   - id: 0918f2af-5721-478c-ae7d-531323141414
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -1707,7 +1707,7 @@ paths:
                     bookmarkFlg: true
                   - id: 0918f2af-5721-478c-ae7d-531323141415
                     name: サンプルアイテム
-                    image: /item-list.png
+                    image: /tablet.png
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
                     price: 3000
@@ -2537,7 +2537,7 @@ components:
         image:
           type: string
           description: 商品の画像URL
-          example: /item-list.png
+          example: /tablet.png
         caption:
           type: string
           description: 商品見出し
