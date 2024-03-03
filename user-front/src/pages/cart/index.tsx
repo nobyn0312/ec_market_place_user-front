@@ -12,7 +12,7 @@ import { HStack } from '@/components/HStack/Hstack';
 
 const Cart = (item: Item) => {
   const [cart, setCart] = useAtom(cartAtom);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   // const map = cart.reduce(
   //   (acc, curr) => acc.set(curr, (acc.get(curr) || 0) + 1),

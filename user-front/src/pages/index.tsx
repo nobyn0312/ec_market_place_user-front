@@ -34,11 +34,18 @@ export default function Home() {
       const newCartState = [...cart, item];
       return newCartState;
     })
+    console.log("追加");
+    //もしidが同じなら コントローラー
+    if (item.id === "0918f2af-5721-478c-ae7d-531323141431") {
+      console.log("sameItem");
+    } else if (item.id !== item.id) {
+      console.log("diff");
+    }
   };
   useEffect(() => {
     const cartJSON = JSON.stringify(cart);
     localStorage.setItem('cart', cartJSON);
-    console.log(cartJSON);
+    // console.log(cartJSON);
   }, [cart]);
 
 
