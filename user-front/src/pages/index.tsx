@@ -9,12 +9,14 @@ import { useAtom } from "jotai";
 import { cartAtom } from "@/pages/_app";
 import Link from "next/link";
 
+
 export default function Home() {
   const itemApi = new ItemApi();
   // APIから商品情報受け取るためのstate
   const [mapState, setMapState] = useState<Item[]>([]);
   //jotai
   const [cart, setCart] = useAtom(cartAtom);
+
 
   useEffect(() => {
     const fetch = async () => {
@@ -29,19 +31,29 @@ export default function Home() {
   }, []);
 
 
+
   const AddCart = (item: Item) => {
+    console.log(item.id);
+
     setCart(() => {
-      const newCartState = [...cart, item];
-      return newCartState;
+
+      // const newCartState = [...cart, item];
+      // return newCartState;
+
+      const newCartState = cart.map(x => {
+        if (x.id === item.id) {
+          console.log("same");
+        }
+      })
+      if (cartAtom.id === item.id) {
+        console.log("same")
+      } else {
+        console.log("differennt");
+      }
     })
-    console.log("追加");
-    //もしidが同じなら コントローラー
-    if (item.id === "0918f2af-5721-478c-ae7d-531323141431") {
-      console.log("sameItem");
-    } else if (item.id !== item.id) {
-      console.log("diff");
-    }
   };
+
+
   useEffect(() => {
     const cartJSON = JSON.stringify(cart);
     localStorage.setItem('cart', cartJSON);

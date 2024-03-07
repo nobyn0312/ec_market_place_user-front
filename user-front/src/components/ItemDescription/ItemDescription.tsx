@@ -37,8 +37,6 @@ export const ItemDescription: FC<Props> = ({ variant, isCartCard, isShoplist, st
     router.push('/item/details');
   };
 
-
-
   return (
     <>
       <div key={key} onClick={ClickItemDetail} className={styles.ItemDescription}>
@@ -54,8 +52,6 @@ export const ItemDescription: FC<Props> = ({ variant, isCartCard, isShoplist, st
             <h2 className={`${styles.itemTitle} ${styles.mB8}`}>{itemTitle}</h2>
             {/* {!isCartCard && <p className={`${styles.review_star}`}><span>{star}</span></p>} */}
             <p className={`${styles.price} ${styles.mB8}`}>¥{price}</p>
-
-
           </div>
         </HStack>
       </div>

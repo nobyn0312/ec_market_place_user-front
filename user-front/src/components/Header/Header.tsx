@@ -42,7 +42,7 @@ const Header = () => {
           <div className={styles.cartIcon}>
             <Link href={"/cart"}>
               <img src={cartIcon.src} alt="cart" />
-              <p className={styles.cartNum}>{cart.length}</p>
+              {/* <p className={styles.cartNum}>{cart.length}</p> */}
             </Link>
           </div>
         </div>

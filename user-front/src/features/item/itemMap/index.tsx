@@ -20,13 +20,9 @@ export interface SwaggerItem {
 }
 
 
-
-
 const ItemMap = () => {
   const itemApi = new ItemApi();
   const [items, setItems] = useState<SwaggerItem[]>([]);
-
-
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -45,7 +41,7 @@ const ItemMap = () => {
       {items.map((item) => (
         <div key={item.id} className={styles.card}>
           <ItemDescription
-            imageUrl={item.image}
+            image={item.image}
             itemTitle={item.name}
             price={item.price}
           />
@@ -54,7 +50,7 @@ const ItemMap = () => {
           </div>
           <div style={{ padding: '0 16px' ,marginBottom:'16px'}}>
             {/* <AddCart item={item} /> */}
-            <AddCart item={item} /> 
+            <AddCart item={item} />
 
           </div>
         </div>

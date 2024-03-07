@@ -28,7 +28,6 @@ export const details = () => {
         <Carousel images={images} />
         <Container>
           <div className={styles.detailslider}>
-
           </div>
           <div className={styles.itermTitle}>
             <Typography>Logicool G ゲームパッド コントローラー F310r PC ゲーム 有線 usb FF14 Windows 版 国内正規品 【 ファイナルファンタジーXIV 推奨周辺機器 】</Typography>
@@ -38,7 +37,6 @@ export const details = () => {
           <div className={styles.cartButton}>
             <Button shape='rounded'>カートに入れる</Button>
           </div>
-
           <p>取り扱いショップ</p>
           <Shopname shopname={'cio'} shopthumbnail={shopthumb2.src} shoppagelink={'../shop/details'} />
         </Container>
