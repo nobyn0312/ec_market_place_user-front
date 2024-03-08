@@ -31,10 +31,8 @@ export default function Home() {
   }, []);
 
 
-
   const AddCart = (item: Item) => {
     console.log(item.id);
-
     setCart(() => {
 
       // const newCartState = [...cart, item];
@@ -43,13 +41,10 @@ export default function Home() {
       const newCartState = cart.map(x => {
         if (x.id === item.id) {
           console.log("same");
+        } else {
+          console.log("diff");
         }
       })
-      if (cartAtom.id === item.id) {
-        console.log("same")
-      } else {
-        console.log("differennt");
-      }
     })
   };
 
