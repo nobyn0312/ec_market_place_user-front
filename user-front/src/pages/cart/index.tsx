@@ -31,7 +31,7 @@ const Cart = (item: Item) => {
     setCart(parsedCart);
     //parsedCart.idだと値が取れなかったので、配列と番号を指定して取得
     for (var i = 0, l = parsedCart.length; i < l; i++) {
-      console.log(parsedCart[i].id)
+      console.log(parsedCart[i].id);
     }
 
   }, []);
@@ -41,13 +41,13 @@ const Cart = (item: Item) => {
   return (
     <Container>
       <ul className={styles.recommend_list} style={{ paddingTop: '32px' }}>
-        {cart.map((item) => (
+        {cart.map((x) => (
           <li className={styles.card} key={item.id}>
             {/* ここにアイテムの表示を行うコンポーネントを追加します */}
             <ItemDescription
-              image={item.image}
-              itemTitle={item.name}
-              price={item.price}
+              image={x.item.image}
+              itemTitle={x.item.name}
+              price={x.item.price}
             />
             <button onClick={removeCart}>削除</button>
 

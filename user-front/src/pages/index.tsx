@@ -8,6 +8,7 @@ import axios from "axios";
 import { useAtom } from "jotai";
 import { cartAtom } from "@/pages/_app";
 import Link from "next/link";
+import CartState from "@/components/cart/CartState";
 
 
 export default function Home() {
@@ -31,20 +32,34 @@ export default function Home() {
   }, []);
 
 
+  // countが０のまま
+  // カートに追加ボタン 1回目で配列に追加されない
+
+
   const AddCart = (item: Item) => {
     console.log(item.id);
+
+
+    // const newCartState = [...cart, item];
+    // return newCartState;
+
     setCart(() => {
-
-      // const newCartState = [...cart, item];
+      const newCartState = [...cart, { item: item, count: 1 }];
       // return newCartState;
-
-      const newCartState = cart.map(x => {
-        if (x.id === item.id) {
+      newCartState.map(x => {
+        if (x.item.id === item.id) {
+          // このままだとheaderのカートのlengthにエラーを解消できない
           console.log("same");
+          console.log(x.count);
+          console.log(cart);
+          return { item: x.item, count: x.count + 1 }
         } else {
           console.log("diff");
+          return newCartState;
         }
       })
+      return newCartState
+
     })
   };
 
