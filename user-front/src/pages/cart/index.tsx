@@ -53,7 +53,7 @@ const Cart = (item: Item) => {
 
             <HStack spacing='sm' position='left' style={{ alignItems: 'center' }}>
               <button onClick={() => setCount(cnt => cnt - 1)}>-</button>
-              <p>{count}</p>
+              <p>{x.count}</p>
               <button onClick={() => setCount(cnt => cnt + 1)}>+</button>
             </HStack>
           </li>
