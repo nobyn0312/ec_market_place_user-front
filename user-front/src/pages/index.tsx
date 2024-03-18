@@ -8,7 +8,7 @@ import axios from "axios";
 import { useAtom } from "jotai";
 import { cartAtom } from "@/pages/_app";
 import Link from "next/link";
-import CartState from "@/components/cart/CartState";
+// import CartState from "@/components/cart/CartState";
 
 
 export default function Home() {
@@ -37,29 +37,21 @@ export default function Home() {
 
 
   const AddCart = (item: Item) => {
-    console.log(item.id);
-
-
-    // const newCartState = [...cart, item];
-    // return newCartState;
-
     setCart(() => {
-      const newCartState = [...cart, { item: item, count: 1 }];
-      // return newCartState;
-      newCartState.map(x => {
-        if (x.item.id === item.id) {
-          // このままだとheaderのカートのlengthにエラーを解消できない
-          console.log("same");
-          console.log(x.count);
-          console.log(cart);
-          return { item: x.item, count: x.count + 1 }
+      const newCartState = cart.map(cartItem => {
+        if (cartItem.item.id === item.id) {
+          // 追加されるitemがすでにcartに含まれているなら、cartに入っている個数を1足す
+          return { item: cartItem.item, count: cartItem.count + 1 }
         } else {
-          console.log("diff");
-          return newCartState;
+          // 関係のないcartItemは何も変化はない
+          return cartItem;
         }
       })
+      // 追加されるitemがcartに含まれていないなら、cartに新規にitemを個数1で追加する
+      if (newCartState.findIndex(cartItem => cartItem.item.id === item.id) === -1) {
+        newCartState.push({item: item, count: 1})
+      }
       return newCartState
-
     })
   };
 
