@@ -1,0 +1,77 @@
+/* テキストサイズ */
+.xxs {
+  font-size: 10px;
+}
+
+.xs {
+  font-size: 12px;
+}
+
+.sm {
+  font-size: 14px;
+}
+
+.md {
+  font-size: 16px;
+}
+
+.lg {
+  font-size: 18px;
+}
+
+.xl {
+  font-size: 20px;
+}
+
+/* テキストカラー */
+.black {
+  color: #000;
+}
+
+.primary {
+  color: var(--txt-primary);
+}
+
+.secondary {
+  color: var(--txt-secondary);
+}
+
+.tertiary {
+  color: var(--txt-tertiary);
+}
+
+.accent {
+  color: var(--txt-accent);
+}
+
+.pure {
+  color: var(--pure-white);
+}
+
+.pure-blk {
+  color: var(--pure-blk);
+}
+
+/* フォント */
+
+.bold {
+  font-weight: bold;
+}
+
+.lineHeight {
+  line-height: 1.5;
+}
+
+/* テキスト位置 */
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}

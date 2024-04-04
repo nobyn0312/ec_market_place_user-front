@@ -1325,44 +1325,44 @@ paths:
                     created_at: '2023-09-15T12:57:05.467611Z'
                     updated_at: '2023-09-15T12:57:05.467611Z'
                   - id: 0918f2af-5721-478c-ae7d-531323141435
-                    name: サンプルアイテム
-                    image: /tablet.png
+                    name: casio 腕時計
+                    image: /watch.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 3000
+                    price: 3,030
                     stocks: 3
                     onSale: true
                     deliveryDate: 2
                     created_at: '2023-09-15T12:57:05.467611Z'
                     updated_at: '2023-09-15T12:57:05.467611Z'
                   - id: 0918f2af-5721-478c-ae7d-531323141436
-                    name: サンプルアイテム
-                    image: /tablet.png
+                    name: react Tシャツ
+                    image: /tshirts.jpeg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 3000
+                    price: 1,980
                     stocks: 2
                     onSale: true
                     deliveryDate: 2
                     created_at: '2023-09-15T12:57:05.467611Z'
                     updated_at: '2023-09-15T12:57:05.467611Z'
                   - id: 0918f2af-5721-478c-ae7d-531323141437
-                    name: サンプルアイテム
-                    image: /tablet.png
+                    name: スチームアイロン
+                    image: /iron.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 3000
+                    price: 1,0980
                     stocks: 3
                     onSale: true
                     deliveryDate: 2
                     created_at: '2023-09-15T12:57:05.467611Z'
                     updated_at: '2023-09-15T12:57:05.467611Z'
                   - id: 0918f2af-5721-478c-ae7d-531323141438
-                    name: サンプルアイテム
-                    image: /tablet.png
+                    name: ブタメン 10個入
+                    image: /butamen.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 3000
+                    price: 800
                     stocks: 1
                     onSale: true
                     deliveryDate: 2

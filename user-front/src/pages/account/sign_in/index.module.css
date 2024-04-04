@@ -1,0 +1,95 @@
+.maintitle {
+  margin-top: 3rem;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.container {
+  margin-bottom: 1rem;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.title {
+  margin-top: 1.2rem;
+  font-size: smaller;
+}
+
+.textfeild {
+  border: 0.5px solid #cfcdc6;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: smaller;
+}
+.textfeild::placeholder {
+  color: #c4c9d0;
+}
+
+.textfeild_date {
+  border: 0.5px solid #cfcdc6;
+  padding: 5px;
+  border-radius: 5px;
+  width: 75px;
+  font-size: smaller;
+}
+.textfeild_date::placeholder {
+  color: #c4c9d0;
+}
+
+.tanjoubi {
+  font-size: 12px;
+  margin-left: 2px;
+  margin-right: 3px;
+}
+
+.buttonOrange {
+  font-weight: 900;
+  font-size: smaller;
+  text-align: center;
+  width: 100%;
+  padding: 12px 0px;
+  background-color: rgb(255, 107, 53);
+  color: white;
+  border-radius: 10px;
+}
+.button {
+  font-weight: 900;
+  text-align: center;
+  width: 100%;
+  padding: 12px 0px;
+  background-color: #333333;
+  color: white;
+  border-radius: 10px;
+}
+
+.second {
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 200;
+  margin-top: 10px;
+  margin-bottom: 2rem;
+  text-decoration: underline;
+}
+
+/* Credit Page */
+.cardlogos {
+  display: flex;
+  justify-content: left;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.cardlogos img {
+  width: 15%;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+  mix-blend-mode: color-burn;
+}
+
+.carddate {
+  border: 0.5px solid #cfcdc6;
+  border-radius: 5px;
+  padding: 5px;
+}
