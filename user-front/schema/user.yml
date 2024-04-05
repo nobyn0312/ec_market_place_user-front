@@ -1369,77 +1369,77 @@ paths:
                     created_at: '2023-09-15T12:57:05.467611Z'
                     updated_at: '2023-09-15T12:57:05.467611Z'
                   - id: 0918f2af-5721-478c-ae7d-531323141439
-                    name: サンプルアイテム
-                    image: /tablet.png
+                    name: LEGO CAR
+                    image: /lego.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 3000
+                    price: 20,000
                     stocks: 3
                     onSale: true
                     deliveryDate: 2
                     created_at: '2023-09-15T12:57:05.467611Z'
                     updated_at: '2023-09-15T12:57:05.467611Z'
                   - id: 0918f2af-5721-478c-ae7d-531323141410
-                    name: サンプルアイテム
-                    image: /tablet.png
+                    name: BAG
+                    image: /bag.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 3000
+                    price: 2,9800
                     stocks: 1
                     onSale: true
                     deliveryDate: 4
                     created_at: '2023-09-15T12:57:05.467611Z'
                     updated_at: '2023-09-15T12:57:05.467611Z'
                   - id: 0918f2af-5721-478c-ae7d-531323141411
-                    name: サンプルアイテム
-                    image: /tablet.png
+                    name: 世界一流エンジニア思考法
+                    image: /book.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 3000
+                    price: 1,980
                     stocks: 1
                     onSale: true
                     deliveryDate: 2
                     created_at: '2023-09-15T12:57:05.467611Z'
                     updated_at: '2023-09-15T12:57:05.467611Z'
                   - id: 0918f2af-5721-478c-ae7d-531323141412
-                    name: サンプルアイテム
-                    image: /tablet.png
+                    name: ギター初心者セット
+                    image: /guitar.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 3000
+                    price: 10,000
                     stocks: 1
                     onSale: true
                     deliveryDate: 2
                     created_at: '2023-09-15T12:57:05.467611Z'
                     updated_at: '2023-09-15T12:57:05.467611Z'
                   - id: 0918f2af-5721-478c-ae7d-531323141413
-                    name: サンプルアイテム
-                    image: /tablet.png
+                    name: サンプラーSP404
+                    image: /sp404.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 3000
+                    price: 59,800
                     stocks: 2
                     onSale: true
                     deliveryDate: 2
                     created_at: '2023-09-15T12:57:05.467611Z'
                     updated_at: '2023-09-15T12:57:05.467611Z'
                   - id: 0918f2af-5721-478c-ae7d-531323141414
-                    name: サンプルアイテム
-                    image: /tablet.png
+                    name: KORG オシロスコープ
+                    image: /korg.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 3000
+                    price: 20,000
                     stocks: 1
                     onSale: true
                     deliveryDate: 2
                     created_at: '2023-09-15T12:57:05.467611Z'
                     updated_at: '2023-09-15T12:57:05.467611Z'
                   - id: 0918f2af-5721-478c-ae7d-531323141415
-                    name: サンプルアイテム
-                    image: /tablet.png
+                    name: A4収納可能ファイルボックス5個セット
+                    image: /box.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 3000
+                    price: 3,000
                     stocks: 2
                     onSale: true
                     deliveryDate: 1

@@ -21,6 +21,15 @@ export default function Home() {
   const itemApi = new ItemApi();
   // APIから商品情報受け取るためのstate
   const [mapState, setMapState] = useState<Item[]>([]);
+
+
+  const images = [
+    item1,
+    item2,
+    item3,
+    item4
+  ]
+
   //jotai
   const [cart, setCart] = useAtom(cartAtom);
 
@@ -75,13 +84,6 @@ export default function Home() {
     localStorage.setItem('cart', cartJSON);
     // console.log(cartJSON);
   }, [cart]);
-
-  const images = [
-    item1,
-    item2,
-    item3,
-    item4
-  ]
 
   return (
     <>

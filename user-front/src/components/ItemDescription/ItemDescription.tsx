@@ -37,7 +37,6 @@ export const ItemDescription: FC<Props> = ({ variant, isCartCard, isShoplist, st
   return (
     <>
       <div key={key} className={styles.ItemDescription}>
-
         <HStack spacing="sm" position="between">
           <div className={styles.itemCardLeft}>
             <Image

@@ -13,36 +13,47 @@ import item1 from '/public/controller.png';
 import item2 from '/public/controller_explanation1.png'
 import item3 from '/public/controller_explanation2.png'
 import { Item, ItemApi } from '../../../types/axios';
-
-const images = [
-  item1,
-  item2,
-  item3
-]
+import Router, { useRouter } from "next/router";
 
 
-interface Props {
-  name: string;
-  price: string;
-  key?:number
-}
-
-
-
-export const details: FC<Props> = ({name,price,key,...props}) => {
-  console.log("あげ")
+const details = () => {
   const itemApi = new ItemApi();
+  const router = useRouter();
+  const { id } = router.query;
+  console.log(id); // URLから取得したidを出力
+
+  const images = [
+    item1,
+    item2,
+    item3
+  ]
+
+  const [itemState, setItemState] = useState<Item>();
+
+  useEffect(() => {
+    console.log('テスト')
+    const fetch = async () => {
+      try {
+        const response = await itemApi.getItemById('', ''); // shopId を空文字列に設定する
+        setItemState(response.data);
+        console.log(response);
+      } catch (error) {
+        console.error('取得できません:', error)
+      }
+    }
+    fetch();
+  }, []);
+
   return (
-    <>
-      <main key={key}>
-        <Carousel images={images} />
-        <Container>
-          <div className={styles.itermTitle}>
-            <Typography>テストアイテム{name}</Typography>
-          </div>
-        </Container>
-      </main>
-    </>
+    <main>
+      <Carousel images={images} />
+      <Container>
+        <div className={styles.itermTitle}>
+          <Typography>テストアイテム{id}</Typography>
+        </div>
+      </Container>
+    </main>
   )
 }
-export default details
+
+export default details;
