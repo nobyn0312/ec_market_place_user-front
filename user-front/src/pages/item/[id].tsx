@@ -12,15 +12,12 @@ import Image from 'next/image';
 import item1 from '/public/controller.png';
 import item2 from '/public/controller_explanation1.png'
 import item3 from '/public/controller_explanation2.png'
-import { Item, ItemApi } from '../../../types/axios';
+import { Item, ItemApi, ShopApi } from '../../../types/axios';
 import Router, { useRouter } from "next/router";
 
 
 const details = () => {
   const itemApi = new ItemApi();
-  const router = useRouter();
-  const { id } = router.query;
-  console.log(id); // URLから取得したidを出力
 
   const images = [
     item1,
@@ -28,15 +25,20 @@ const details = () => {
     item3
   ]
 
+  const router = useRouter();
+  const { id } = router.query;
+
+  console.log(id)
+
+
   const [itemState, setItemState] = useState<Item>();
 
   useEffect(() => {
-    console.log('テスト')
     const fetch = async () => {
       try {
-        const response = await itemApi.getItemById('', ''); // shopId を空文字列に設定する
+        const response = await itemApi.getItemById('', ItemApi.name); // shopId を空文字列に設定する
         setItemState(response.data);
-        console.log(response);
+        console.log(response.data.name);
       } catch (error) {
         console.error('取得できません:', error)
       }
@@ -48,8 +50,9 @@ const details = () => {
     <main>
       <Carousel images={images} />
       <Container>
-        <div className={styles.itermTitle}>
-          <Typography>テストアイテム{id}</Typography>
+        <div className={styles.itemTitle}>
+          <Typography>{itemState?.name}</Typography>
+          <Typography>{itemState?.price}</Typography>
         </div>
       </Container>
     </main>
