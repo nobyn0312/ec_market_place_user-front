@@ -4,7 +4,7 @@ import Image from "next/image";
 
 interface Props {
   images: string[]
-  size: number | string
+  size?: number | string
   alt?: string
   noImage?: any
 }
@@ -18,17 +18,22 @@ export const Slider: FC<Props> = ({
 }) => {
   return (
     <div className={styles.sliderWrap}>
-      <div className={styles.sliderList}>
+      <ul className={styles.sliderList}>
         {images.map((images) => (
-          <Image
-            src={images}
-            alt="item"
-            width={136} 
-            height={136}
-            key={images}
-          />
+          <li>
+            <div className={styles.inner}>
+              <Image
+                priority={true}
+                src={images}
+                alt="item"
+                width={136}
+                height={136}
+                key={images}
+              />
+            </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   )
 }

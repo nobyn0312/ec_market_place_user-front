@@ -4,7 +4,6 @@ import { Container } from '@/components/Container/Container'
 import { Item, ItemApi } from '../../types/axios';
 import { ItemDescription } from "@/components/ItemDescription/ItemDescription";
 import { Button } from "@/components/Button/Button";
-import axios from "axios";
 import { useAtom } from "jotai";
 import { cartAtom } from "@/pages/_app";
 import Link from "next/link";
@@ -13,6 +12,8 @@ import item1 from '/public/controller.png';
 import item2 from '/public/earphone.png';
 import item3 from '/public/mobileBattery.jpg';
 import item4 from '/public/tablet.png'
+import item5 from '/public/book.jpg'
+import item6 from '/public/butamen.jpg'
 import Image from "next/image";
 import campaign from '/public/campaign.jpg'
 import { Typography } from "@/components/Typography/Typography";
@@ -22,12 +23,13 @@ export default function Home() {
   // APIから商品情報受け取るためのstate
   const [mapState, setMapState] = useState<Item[]>([]);
 
-
-  const images = [
-    item1,
-    item2,
-    item3,
-    item4
+  const imagesArray = [
+    item1.src,
+    item2.src,
+    item3.src,
+    item4.src,
+    item5.src,
+    item6.src
   ]
 
   //jotai
@@ -38,6 +40,7 @@ export default function Home() {
       try {
         const response = await itemApi.getItems("items");
         setMapState(response.data);
+        console.log(response);
       } catch (error) {
         console.error('商品一覧を取得できませんでした:', error)
       }
@@ -45,20 +48,16 @@ export default function Home() {
     fetchItem()
   }, []);
 
-
   const AddCart = (item: Item) => {
     setCart(() => {
       const newCartState = cart.map(cartItem => {
         if (cartItem.item.id === item.id) {
-          // 追加されるitemがすでにcartに含まれているなら、cartに入っている個数を1足す
           console.log(cart)
           return { item: cartItem.item, count: cartItem.count + 1 }
         } else {
-          // 関係のないcartItemは何も変化はない
           return cartItem;
         }
       })
-      // 追加されるitemがcartに含まれていないなら、cartに新規にitemを個数1で追加する
       if (newCartState.findIndex(cartItem => cartItem.item.id === item.id) === -1) {
         newCartState.push({ item: item, count: 1 })
       }
@@ -90,14 +89,14 @@ export default function Home() {
       <main className={`${styles.container}`}>
         <section className={`${styles.history} ${styles.container_inner}`}>
           <p>チェックしたアイテム</p>
-          <Slider images={images} />
+          <Slider images={imagesArray} />
         </section>
 
         <section className={styles.recommend}>
           <Container>
             <section className={styles.container}>
-              <p>キャンペーン</p>
-              <Image src={campaign} alt="campaign" width={350} />
+              <Typography size="md" style={{ marginBottom: '8px' }}>キャンペーン</Typography>
+              <Image src={campaign} alt="campaign" width={350} style={{ margin: '0 auto 8px', display: 'block' }} />
               <Typography size="xl" textAlign="center">新生活応援アイテム多数！</Typography>
             </section>
 

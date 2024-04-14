@@ -7,7 +7,9 @@ import { useRouter } from 'next/router';
 import Cart from "..";
 import { cartAtom } from "@/pages/_app";
 import { useAtom } from "jotai";
-
+import { getTotal } from "@/features/cart/getTotal";
+import { Typography } from "@/components/Typography/Typography";
+import Link from "next/link";
 
 const index = () => {
 
@@ -22,15 +24,45 @@ const index = () => {
     router.push('/cart/complete');
   };
 
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth() + 1;
+  const day = currentDate.getDate();
+  const formattedDate = `${year}/${month}/${day}`;
+  console.log(formattedDate);
+  const arrivalDate = `${year}/${month}/${day + 2}`;
+  console.log(arrivalDate);
 
   return (
     <>
       <Container>
-        <Button shape="square" onClick={handleConfirmOrder}>注文を確定する</Button>
+        <Button shape="square" ><Link href="/cart/complete" style={{ textAlign: 'center', display: 'block', padding: '15px' }}>注文を確定する</Link></Button>
 
-        <h1>注文確認画面</h1>
-        <h2>小計：20,980</h2>
+        <Typography size="md" font="bold">小計</Typography>
 
+        <table style={{ border: '1px solid black' }}>
+          <tbody>
+            <tr>
+              <th>商品の小計</th>
+              <td>{getTotal(cart)}</td>
+            </tr>
+            <tr>
+              <th>配送料・手数料</th>
+              <td>¥0</td>
+            </tr>
+            <tr>
+              <th>ご請求金額</th>
+              <td>{getTotal(cart)}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <Typography size="md" font="bold">注文の詳細</Typography>
+        <table>
+          <tbody>
+
+          </tbody>
+        </table>
 
 
         <div>
@@ -40,7 +72,7 @@ const index = () => {
           </div>
           <h2>お届け予定日</h2>
           <div className={styles.box}>
-            <p>9月8日</p>
+            <p>{arrivalDate}</p>
             <p>時間指定：なし</p>
             <p></p>
           </div>
@@ -52,17 +84,9 @@ const index = () => {
             <p></p>
           </div>
 
-          <h2>お届け予定日</h2>
-          <div className={styles.box}>
-            <p>9月8日</p>
-            <p>時間指定：なし</p>
-            <p></p>
-          </div>
-
-          <Button shape="square">注文を確定する</Button>
-
         </div>
 
+        <Button shape="square" ><Link href="/cart/complete" style={{ textAlign: 'center', display: 'block', padding: '15px' }}>注文を確定する</Link></Button>
       </Container>
     </>
   )

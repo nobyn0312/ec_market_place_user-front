@@ -1,5 +1,5 @@
 import { Container } from "@/components/Container/Container";
-import { Table } from "@/components/Table/Table";
+// import { Table } from "@/components/Table/Table";
 import React from "react";
 
 const index = () => {

@@ -1,15 +1,17 @@
 import { FC, ReactNode } from 'react'
-import { Splide, SplideSlide } from "@splidejs/react-splide";
+// @ts-ignore
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 import Image from "next/image";
 import styles from './Carousel.module.css'
 
 interface Props {
-  className?: any
-  images: string[] | String[];
+  images: string[]
+  className?: string
+  alt: string
 }
 
 
-export const Carousel: FC<Props> = ({ className, images, ...props }) => {
+export const Carousel: FC<Props> = ({ className, images,alt, ...props }) => {
   return (
     <div className={styles.carouselWrap}>
       <Splide
@@ -25,7 +27,7 @@ export const Carousel: FC<Props> = ({ className, images, ...props }) => {
           <SplideSlide key={`${images}-${i}`}>
             <Image
               src={image}
-              alt={`Image`}
+              alt={alt}
               width={300}
               height={300}
             />

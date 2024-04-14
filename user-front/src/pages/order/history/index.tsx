@@ -1,8 +1,8 @@
 import { Container } from '@/components/Container/Container'
 import React from 'react'
 import styles from '../index.module.css'
-import item1 from '/public/item2_1.png'
-import item2 from '/public/item-list.png'
+import item1 from '/public/controller.png'
+import item2 from '/public/controller.png'
 import { HistoryItem } from '@/components/Historyitem/HistoryItem'
 
 const history = () => {

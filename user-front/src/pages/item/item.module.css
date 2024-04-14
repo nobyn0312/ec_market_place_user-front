@@ -1,17 +1,15 @@
-.itermTitle{
+.itemTitle {
   padding-top: 24px;
   margin-bottom: 8px;
 }
-.itermTitle p{
-  font-size: 14px;
+.itemTitle p {
+  font-size: 20px;
   font-weight: bold;
 }
-
-
-.price{
+.price {
   font-size: 32px;
   font-weight: bold;
-  color: #B12704;
+  color: #b12704;
   margin-bottom: 24px;
 }
 
@@ -19,3 +17,6 @@
   margin-bottom: 40px;
 }
 
+.star {
+  color: yellow;
+}

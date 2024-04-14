@@ -1287,7 +1287,7 @@ paths:
                     image: '/controller.png'
                     caption: NintendoSwitch,Xbox,PS4,5対応ゲームコントローラーです。連射機能つき
                     description: NintendoSwitch,Xbox,PS4,5対応ゲームコントローラーです。連射機能つき
-                    price: 2,980
+                    price: 2980
                     stocks: 3
                     onSale: true
                     deliveryDate: 2
@@ -1296,7 +1296,7 @@ paths:
                     image: '/tablet.png'
                     caption: タブレット
                     description: タブレット
-                    price: 17,980
+                    price: 17980
                     stocks: 1
                     onSale: true
                     deliveryDate: 2
@@ -1318,7 +1318,7 @@ paths:
                     image: /mobileBattery.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 7,980
+                    price: 7980
                     stocks: 2
                     onSale: true
                     deliveryDate: 3
@@ -1329,7 +1329,7 @@ paths:
                     image: /watch.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 3,030
+                    price: 3030
                     stocks: 3
                     onSale: true
                     deliveryDate: 2
@@ -1340,7 +1340,7 @@ paths:
                     image: /tshirts.jpeg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 1,980
+                    price: 1980
                     stocks: 2
                     onSale: true
                     deliveryDate: 2
@@ -1351,7 +1351,7 @@ paths:
                     image: /iron.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 1,0980
+                    price: 10980
                     stocks: 3
                     onSale: true
                     deliveryDate: 2
@@ -1373,7 +1373,7 @@ paths:
                     image: /lego.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 20,000
+                    price: 20000
                     stocks: 3
                     onSale: true
                     deliveryDate: 2
@@ -1384,7 +1384,7 @@ paths:
                     image: /bag.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 2,9800
+                    price: 29800
                     stocks: 1
                     onSale: true
                     deliveryDate: 4
@@ -1395,7 +1395,7 @@ paths:
                     image: /book.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 1,980
+                    price: 1980
                     stocks: 1
                     onSale: true
                     deliveryDate: 2
@@ -1406,7 +1406,7 @@ paths:
                     image: /guitar.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 10,000
+                    price: 10000
                     stocks: 1
                     onSale: true
                     deliveryDate: 2
@@ -1417,7 +1417,7 @@ paths:
                     image: /sp404.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 59,800
+                    price: 59800
                     stocks: 2
                     onSale: true
                     deliveryDate: 2
@@ -1428,7 +1428,7 @@ paths:
                     image: /korg.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 20,000
+                    price: 20000
                     stocks: 1
                     onSale: true
                     deliveryDate: 2
@@ -1439,7 +1439,7 @@ paths:
                     image: /box.jpg
                     caption: ここには商品の見出しが入ります
                     description: ここには商品の詳細説明が入ります
-                    price: 3,000
+                    price: 3000
                     stocks: 2
                     onSale: true
                     deliveryDate: 1
@@ -1493,11 +1493,11 @@ paths:
                 $ref: '#/components/schemas/Item'
               example:
                 id: 0918f2af-5721-478c-ae7d-531323141431
-                name: タブレット
+                name: ゲームコントローラー
                 image: /tablet.png
                 caption: ここには商品の見出しが入ります
                 description: ここには商品の詳細説明が入ります
-                price: 17,980
+                price: 2980
                 stocks: 3
                 onSale: true
                 deliveryDate: 2

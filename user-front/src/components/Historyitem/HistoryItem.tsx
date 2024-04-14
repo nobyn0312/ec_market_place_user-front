@@ -1,7 +1,8 @@
 import { FC } from "react";
 import styles from "./HistoryItem.module.css"
-import Image from "next/image";
+// import Image from "next/image";
 import { HStack } from "../HStack/Hstack";
+import Link from "next/link";
 
 interface Props {
   className?: string
@@ -14,7 +15,7 @@ export const HistoryItem: FC<Props> = ({ imageUrl, className, title, date, ...pr
   return (
     <>
       <li className={styles.historyItem}>
-        <a href="/order/details">
+        <Link href="/order/details">
           <HStack spacing='xlg' position='between' style={{ alignItems: 'center' }}>
             <img
               src={imageUrl.src}
@@ -22,10 +23,10 @@ export const HistoryItem: FC<Props> = ({ imageUrl, className, title, date, ...pr
               width={78} height={78} />
             <div className={styles.historyDescription}>
               <p className={styles.itemTitle}>{title}</p>
-              <p className={styles.date}>{date}に 配達済</p>
+              <p className={styles.date}>{date}に配達済</p>
             </div>
           </HStack>
-        </a>
+        </Link>
       </li>
     </>
   )

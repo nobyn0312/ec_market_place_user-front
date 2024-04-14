@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { HStack } from '../HStack/Hstack'
 import styles from './Shopname.module.css'
+import Link from 'next/link'
 
 interface Props {
   shopname: string
@@ -13,7 +14,7 @@ export const Shopname: FC<Props> = ({ shopname, shopthumbnail, shoppagelink,...p
   return (
     <>
       <div className={styles.shopName}>
-        <a href={shoppagelink}>
+        <Link href={shoppagelink}>
           <HStack spacing='md' className={styles.shopNameInner}>
             <img src={shopthumbnail}
               width={48}
@@ -23,7 +24,7 @@ export const Shopname: FC<Props> = ({ shopname, shopthumbnail, shoppagelink,...p
             />
             <p>{ shopname}</p>
           </HStack>
-        </a>
+        </Link>
       </div>
     </>
   )

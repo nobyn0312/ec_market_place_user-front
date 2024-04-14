@@ -26,3 +26,7 @@
   padding: 16px 8px 24px;
   border: 1px solid #ececec;
 }
+
+.totalPrice{
+  color: red;
+}
