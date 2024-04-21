@@ -16,7 +16,6 @@ const index = () => {
   const [cart, setCart] = useAtom(cartAtom);
   const [count, setCount] = useState(1);
 
-  console.log(cart)
   const router = useRouter();
 
   const handleConfirmOrder = () => {
@@ -33,6 +32,9 @@ const index = () => {
   const arrivalDate = `${year}/${month}/${day + 2}`;
   console.log(arrivalDate);
 
+
+  console.log(cart)
+
   return (
     <>
       <Container>
@@ -43,7 +45,7 @@ const index = () => {
         <table style={{ border: '1px solid black' }}>
           <tbody>
             <tr>
-              <th>商品の小計</th>
+              <th>商品の小計：¥</th>
               <td>{getTotal(cart)}</td>
             </tr>
             <tr>
@@ -60,7 +62,18 @@ const index = () => {
         <Typography size="md" font="bold">注文の詳細</Typography>
         <table>
           <tbody>
-
+            <tr>
+              <th></th>
+              <th>商品</th>
+              <th>価格</th>
+              <td>数量</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>あああ</td>
+              <td>1000</td>
+              <td>3</td>
+            </tr>
           </tbody>
         </table>
 

@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styles from "./Slider.module.css"
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   images: string[]
@@ -18,10 +19,10 @@ export const Slider: FC<Props> = ({
 }) => {
   return (
     <div className={styles.sliderWrap}>
-      <ul className={styles.sliderList}>
+      <div className={styles.sliderList}>
         {images.map((images) => (
-          <li>
-            <div className={styles.inner}>
+          <div className={styles.sliderItem}>
+            <Link href="">
               <Image
                 priority={true}
                 src={images}
@@ -30,10 +31,10 @@ export const Slider: FC<Props> = ({
                 height={136}
                 key={images}
               />
-            </div>
-          </li>
+            </Link>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   )
 }

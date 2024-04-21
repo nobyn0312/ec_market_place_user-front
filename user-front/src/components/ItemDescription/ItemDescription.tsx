@@ -44,7 +44,6 @@ export const ItemDescription: FC<Props> = ({ variant, isCartCard, isShoplist, st
               alt={itemTitle}
               width={160}
               height={160}
-              // fill
               className={styles.image}
               style={{ display: 'block' }}
             />

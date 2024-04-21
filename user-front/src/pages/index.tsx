@@ -17,6 +17,7 @@ import item6 from '/public/butamen.jpg'
 import Image from "next/image";
 import campaign from '/public/campaign.jpg'
 import { Typography } from "@/components/Typography/Typography";
+import { useCart } from "@/hooks/useCart";
 
 export default function Home() {
   const itemApi = new ItemApi();
@@ -48,22 +49,26 @@ export default function Home() {
     fetchItem()
   }, []);
 
-  const AddCart = (item: Item) => {
-    setCart(() => {
-      const newCartState = cart.map(cartItem => {
-        if (cartItem.item.id === item.id) {
-          console.log(cart)
-          return { item: cartItem.item, count: cartItem.count + 1 }
-        } else {
-          return cartItem;
-        }
-      })
-      if (newCartState.findIndex(cartItem => cartItem.item.id === item.id) === -1) {
-        newCartState.push({ item: item, count: 1 })
-      }
-      return newCartState;
-    })
-  };
+  // const AddCart = (item: Item) => {
+  //   setCart(() => {
+  //     const newCartState = cart.map(cartItem => {
+  //       if (cartItem.item.id === item.id) {
+  //         console.log(cart)
+  //         return { item: cartItem.item, count: cartItem.count + 1 }
+  //       } else {
+  //         return cartItem;
+  //       }
+  //     })
+  //     if (newCartState.findIndex(cartItem => cartItem.item.id === item.id) === -1) {
+  //       newCartState.push({ item: item, count: 1 })
+  //     }
+  //     return newCartState;
+  //   })
+  // };
+
+
+  const { addCart } = useCart();
+
 
   useEffect(() => {
     const fetch = async () => {
@@ -95,6 +100,7 @@ export default function Home() {
         <section className={styles.recommend}>
           <Container>
             <section className={styles.container}>
+
               <Typography size="md" style={{ marginBottom: '8px' }}>キャンペーン</Typography>
               <Image src={campaign} alt="campaign" width={350} style={{ margin: '0 auto 8px', display: 'block' }} />
               <Typography size="xl" textAlign="center">新生活応援アイテム多数！</Typography>
@@ -115,7 +121,7 @@ export default function Home() {
                     </div>
                   </Link>
                   <div style={{ padding: '0 16px', marginBottom: '16px' }}>
-                    <Button onClick={(event) => AddCart(item)} shape="rounded">カートに追加</Button>
+                    <Button onClick={(event) => addCart(item)} shape="rounded">カートに追加</Button>
                   </div>
                 </li>
               ))}

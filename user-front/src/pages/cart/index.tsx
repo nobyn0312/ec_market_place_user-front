@@ -12,12 +12,10 @@ import { Router, useRouter } from 'next/router';
 import Link from 'next/link';
 import { Typography } from '@/components/Typography/Typography';
 import { getTotal } from '@/features/cart/getTotal';
+import { useCart } from '@/hooks/useCart';
 
 const Cart = (item: Item) => {
   const [cart, setCart] = useAtom(cartAtom);
-  // const [count, setCount] = useState(1);
-
-  console.log(cart)
 
   // const count = cartAtom.count
   const [count, setCount] = useState(0);
@@ -29,6 +27,8 @@ const Cart = (item: Item) => {
 
   const [totalState, setTotalState] = useState(0);
 
+  const { removeCart } = useCart();
+
   // 小計を求める
   // let total = 0;
   // for (let i = 0; i < cart.length; i++) {
@@ -39,17 +39,6 @@ const Cart = (item: Item) => {
 
   // console.log(total);
 
-
-  // カートから削除
-  const removeCart = (itemId: string) => {
-    console.log("rem");
-    console.log(cart)
-    console.log(itemId)
-    const updatedCart = cart.filter((deleteItem) => itemId !== deleteItem.item.id);
-    setCart(updatedCart);
-    console.log(cart)
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  }
 
   const goConfirm = () => {
     console.log('confirm');
