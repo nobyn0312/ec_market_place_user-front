@@ -49,23 +49,6 @@ export default function Home() {
     fetchItem()
   }, []);
 
-  // const AddCart = (item: Item) => {
-  //   setCart(() => {
-  //     const newCartState = cart.map(cartItem => {
-  //       if (cartItem.item.id === item.id) {
-  //         console.log(cart)
-  //         return { item: cartItem.item, count: cartItem.count + 1 }
-  //       } else {
-  //         return cartItem;
-  //       }
-  //     })
-  //     if (newCartState.findIndex(cartItem => cartItem.item.id === item.id) === -1) {
-  //       newCartState.push({ item: item, count: 1 })
-  //     }
-  //     return newCartState;
-  //   })
-  // };
-
 
   const { addCart } = useCart();
 

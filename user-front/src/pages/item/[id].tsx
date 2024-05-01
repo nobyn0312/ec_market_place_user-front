@@ -12,6 +12,7 @@ import item2 from '/public/controller_explanation1.png'
 import item3 from '/public/controller_explanation2.png'
 import { Item, ItemApi } from '../../../types/axios';
 import Router, { useRouter } from "next/router";
+import { useCart } from "@/hooks/useCart";
 
 
 const details = () => {
@@ -31,6 +32,14 @@ const details = () => {
 
 
   const [itemState, setItemState] = useState<Item>();
+
+  const { addCart } = useCart();
+
+  const gameController = itemApi.getItems("items");
+
+  console.log(gameController);
+
+
 
   useEffect(() => {
     const fetch = async () => {
@@ -59,7 +68,7 @@ const details = () => {
         <p className={styles.price}>¥{itemState?.price}</p>
 
         <div className={styles.cartButton}>
-          <Button shape='rounded'>カートに入れる</Button>
+          <Button shape='rounded' onClick={(e)=> addCart(Item)}>カートに入れる</Button>
         </div>
         <p>取り扱いショップ</p>
         <Shopname shopname={'cio'} shopthumbnail={shopthumb2.src} shoppagelink={'../shop/details'} />

@@ -20,25 +20,24 @@ const Cart = (item: Item) => {
   // const count = cartAtom.count
   const [count, setCount] = useState(0);
 
-  const increment = () => setCount((prevCount) => prevCount + 1);
-  const decrement = () => setCount((prevCount) => prevCount - 1);
+  const increment = () => {
+    setCount((x) => x + 1)
+    console.log('プラス')
+  };
+
+
+
+
+  const decrement = () => {
+    setCount((x) => x - 1);
+    console.log('マイナス')
+  }
 
 
 
   const [totalState, setTotalState] = useState(0);
 
   const { removeCart } = useCart();
-
-  // 小計を求める
-  // let total = 0;
-  // for (let i = 0; i < cart.length; i++) {
-  //   const item = cart[i].item;
-  //   const count = cart[i].count;
-  //   total += item.price * count;
-  // }
-
-  // console.log(total);
-
 
   const goConfirm = () => {
     console.log('confirm');
@@ -79,7 +78,7 @@ const Cart = (item: Item) => {
                 <button className={styles.quantityBtn} onClick={() => removeCart(x.item.id)}>削除</button>
               </HStack>
             </Link>
-            <p>{count}</p>
+            {/* <p>{count}</p> */}
           </li>
         ))}
       </ul>

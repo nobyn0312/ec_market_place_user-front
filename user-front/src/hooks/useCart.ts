@@ -35,9 +35,9 @@ export const useCart = () => {
     localStorage.setItem('cart', JSON.stringify(updatedCart))
   }
 
-  const testFub = () => {
-    console.log('test')
+  const totalPrice = () => {
+
   }
 
-  return { addCart, removeCart, testFub } // AddCartとremoveCartも必要に応じて追加することができます
+  return { addCart, removeCart } // AddCartとremoveCartも必要に応じて追加することができます
 }

@@ -10,6 +10,8 @@ import { useAtom } from "jotai";
 import { getTotal } from "@/features/cart/getTotal";
 import { Typography } from "@/components/Typography/Typography";
 import Link from "next/link";
+import Image from "next/image";
+import { HStack } from "@/components/HStack/Hstack";
 
 const index = () => {
 
@@ -35,6 +37,9 @@ const index = () => {
 
   console.log(cart)
 
+  const [totalState, setTotalState] = useState(0);
+
+
   return (
     <>
       <Container>
@@ -42,40 +47,72 @@ const index = () => {
 
         <Typography size="md" font="bold">小計</Typography>
 
-        <table style={{ border: '1px solid black' }}>
-          <tbody>
-            <tr>
-              <th>商品の小計：¥</th>
-              <td>{getTotal(cart)}</td>
-            </tr>
-            <tr>
-              <th>配送料・手数料</th>
-              <td>¥0</td>
-            </tr>
-            <tr>
-              <th>ご請求金額</th>
-              <td>{getTotal(cart)}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div style={{ border: '1px solid black' }}>
+          <div>
+            <div>商品の小計：</div>
+            <div>¥{getTotal(cart)}</div>
+            <div>配送料・手数料</div>
+            <div>¥ 0</div>
+            <div>ご請求金額</div>
+            <div>{getTotal(cart)}</div>
+          </div>
+        </div>
+
 
         <Typography size="md" font="bold">注文の詳細</Typography>
-        <table>
+        <table style={{ border: '1px solid #333' }}>
           <tbody>
-            <tr>
+            <tr style={{ borderBottom: '1px solid #333' }}>
               <th></th>
               <th>商品</th>
               <th>価格</th>
-              <td>数量</td>
+              <th>数量</th>
             </tr>
-            <tr>
-              <td></td>
-              <td>あああ</td>
-              <td>1000</td>
-              <td>3</td>
-            </tr>
+            {cart.map((x) => {
+              return (
+                <tr>
+                  <td>
+                    <Image
+                      src={x.item.image}
+                      alt="商品画像"
+                      width={92}
+                      height={92}
+                    />
+                  </td>
+                  <td style={{ width: '40%' }}>{x.item.name}</td>
+                  <td>¥{x.item.price}</td>
+                  <td style={{ width: '10%' }}>{x.count}</td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
+
+        {/* <div>
+          <div></div>
+          <div>商品</div>
+          <div>価格</div>
+          <div>数量</div>
+
+          {cart.map((x) => {
+            return (
+              <HStack spacing="md" style={{border:'1px solid #333'}}>
+                <div>
+                  <Image
+                    src={x.item.image}
+                  alt="商品画像"
+                  width={92}
+                    height={92}
+                    style={{borderRight:'1px solid #333333'}}
+                  />
+                </div>
+                <div style={{width:'40%', borderRight:'1px solid #333'}}>{x.item.name}</div>
+                <div>¥{x.item.price}</div>
+                <div style={{ width: '10%'}}>{x.count}</div>
+              </HStack>
+            )
+          })}
+        </div> */}
 
 
         <div>
