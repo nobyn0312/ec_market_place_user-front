@@ -13,6 +13,9 @@ import Link from 'next/link';
 import { Typography } from '@/components/Typography/Typography';
 import { getTotal } from '@/features/cart/getTotal';
 import { useCart } from '@/hooks/useCart';
+import AddCart from '@/components/CartActions/AddCart';
+
+import { CartItem } from '@/pages/_app';
 
 const Cart = (item: Item) => {
   const [cart, setCart] = useAtom(cartAtom);
@@ -20,9 +23,14 @@ const Cart = (item: Item) => {
   // const count = cartAtom.count
   const [count, setCount] = useState(0);
 
-  const increment = () => {
-    setCount((x) => x + 1)
+  const { addCart } = useCart();
+
+
+
+  const increment = (cartItem: CartItem) => {
+    // setCount((x) => x + 1)
     console.log('プラス')
+    addCart(cartItem.item);
   };
 
 

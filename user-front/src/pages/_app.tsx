@@ -7,7 +7,7 @@ import { Item } from '../../types/axios'
 
 // export const cartAtom = atom([]);
 
-type CartItem = {
+export type CartItem = {
   item: Item,
   count: number
 }
