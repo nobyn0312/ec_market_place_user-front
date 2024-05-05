@@ -18,12 +18,11 @@ import AddCart from '@/components/CartActions/AddCart';
 import { CartItem } from '@/pages/_app';
 
 const Cart = (item: Item) => {
-  const [cart, setCart] = useAtom(cartAtom);
 
   // const count = cartAtom.count
   const [count, setCount] = useState(0);
 
-  const { addCart } = useCart();
+  const { addCart, removeCart, decrementCart, cart } = useCart();
 
 
 
@@ -36,31 +35,18 @@ const Cart = (item: Item) => {
 
 
 
-  const decrement = () => {
-    setCount((x) => x - 1);
+  const decrement = (cartItem: CartItem) => {
     console.log('マイナス')
+    decrementCart(cartItem.item)
   }
 
 
 
   const [totalState, setTotalState] = useState(0);
 
-  const { removeCart } = useCart();
-
   const goConfirm = () => {
     console.log('confirm');
   };
-
-  useEffect(() => {
-    const cartItem = localStorage.getItem('cart');
-    //JSON形式はそのままだと値を取り出せないのでparseで変換する
-    const parsedCart = cartItem ? JSON.parse(cartItem) : [];
-    setCart(parsedCart);
-    //parsedCart.idだと値が取れなかったので、配列と番号を指定して取得
-    for (var i = 0, l = parsedCart.length; i < l; i++) {
-      console.log(parsedCart[i].id);
-    }
-  }, []);
 
   return (
     <Container>
@@ -79,9 +65,11 @@ const Cart = (item: Item) => {
               />
               <HStack spacing='md'>
                 <HStack spacing='sm' position='left' style={{ border: '1px solid black' }}>
-                  <button className={styles.quantityBtn} onClick={decrement}>-</button>
+                  {/* mapで受け取っているxを渡している */}
+                  <button className={styles.quantityBtn} onClick={() => decrement(x)}>-</button>
                   {x.count}
-                  <button className={styles.quantityBtn} onClick={increment}>+</button>
+                  {/* mapで受け取っているxを渡している */}
+                  <button className={styles.quantityBtn} onClick={() => increment(x)}>+</button>
                 </HStack>
                 <button className={styles.quantityBtn} onClick={() => removeCart(x.item.id)}>削除</button>
               </HStack>

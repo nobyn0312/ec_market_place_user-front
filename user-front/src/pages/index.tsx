@@ -66,12 +66,6 @@ export default function Home() {
   }, [])
 
 
-  useEffect(() => {
-    const cartJSON = JSON.stringify(cart);
-    localStorage.setItem('cart', cartJSON);
-    // console.log(cartJSON);
-  }, [cart]);
-
   return (
     <>
       <main className={`${styles.container}`}>
