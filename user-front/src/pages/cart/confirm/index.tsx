@@ -39,11 +39,16 @@ const index = () => {
 
   const [totalState, setTotalState] = useState(0);
 
+  const checkout = () => {
+    console.log('完了');
+    localStorage.removeItem('cart');
+    setCart([]);
+  };
 
   return (
     <>
       <Container>
-        <Button shape="square" ><Link href="/cart/complete" style={{ textAlign: 'center', display: 'block', padding: '15px' }}>注文を確定する</Link></Button>
+        <Button onClick={checkout} shape="square" ><Link href="/cart/complete" style={{ textAlign: 'center', display: 'block', padding: '15px' }}>注文を確定する</Link></Button>
 
         <Typography size="md" font="bold">小計</Typography>
 
@@ -136,7 +141,7 @@ const index = () => {
 
         </div>
 
-        <Button shape="square" ><Link href="/cart/complete" style={{ textAlign: 'center', display: 'block', padding: '15px' }}>注文を確定する</Link></Button>
+        <Button onClick={checkout} shape="square" ><Link href="/cart/complete" style={{ textAlign: 'center', display: 'block', padding: '15px' }}>注文を確定する</Link></Button>
       </Container>
     </>
   )
